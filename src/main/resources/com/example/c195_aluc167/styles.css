@@ -1,0 +1,24 @@
+
+#lm_username_tf, #lm_password_tf
+{
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #ff9216;
+    -fx-font-size: 16px;
+    -fx-text-fill: #ffffff;
+}
+
+#lm_login_btn
+{
+    -fx-background-color: transparent;
+    -fx-border-color: #ff9216;
+    -fx-border-radius: 25px;
+    -fx-text-fill: #ff9216;
+}
+
+#lm_login_btn:hover
+{
+    -fx-background-color: #ff9216;
+    -fx-border-radius: 25px;
+    -fx-text-fill: black;
+}
