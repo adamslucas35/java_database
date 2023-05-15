@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LoginMainController implements Initializable {
@@ -28,11 +29,26 @@ public class LoginMainController implements Initializable {
     @FXML private Button lm_login_btn;
     @FXML private Label lm_username_lbl;
     @FXML private Label lm_password_lbl;
+    @FXML private Label lm_location;
     @FXML private TextField lm_username_tf;
     @FXML private TextField lm_password_tf;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Login page has been initialized!");
+        ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
+
+
+        Locale locale = Locale.getDefault();
+        String country = locale.getDisplayCountry(locale);
+        ResourceBundle bundle = ResourceBundle.getBundle("Lang");
+        String locationText = bundle.getString("lm_location");
+        String formattedLocation = String.format(locationText, country);
+        lm_location.setText(formattedLocation);
+
+        if((Locale.getDefault().getLanguage().equals("de")) || (Locale.getDefault().getLanguage().equals("es")) || (Locale.getDefault().getLanguage().equals("fr")))
+        {
+            System.out.println(rb.getString("language"));
+        }
     }
 
     public void lm_login_btn_clicked(ActionEvent actionEvent) throws IOException, SQLException {

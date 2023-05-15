@@ -8,29 +8,43 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="440.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.c195_aluc167.controllers.LoginMainController">
-   <children>
-      <Rectangle id="lm_background_rct" fx:id="lm_background_rct" arcHeight="5.0" arcWidth="5.0" height="440.0" stroke="BLACK" strokeType="INSIDE" width="440.0" />
-      <Label layoutX="188.0" layoutY="126.0" text="Location" textAlignment="CENTER" textFill="WHITE"><font>
+   <Rectangle id="lm_background_rct" fx:id="lm_background_rct" arcHeight="5.0" arcWidth="5.0" height="440.0" stroke="BLACK" strokeType="INSIDE" width="440.0" />
+   <Label alignment="CENTER" layoutX="54.0" layoutY="49.0" prefHeight="68.0" prefWidth="330.0" text="%lm_loginTitle" textAlignment="CENTER" textFill="#ff9216">
+      <font>
+         <Font name="Calisto MT Bold" size="36.0" />
+      </font>
+   </Label>
+   <Label fx:id="lm_location" alignment="CENTER" layoutX="97.0" layoutY="117.0" prefHeight="21.0" prefWidth="225.0" text="%lm_location" textAlignment="CENTER" textFill="WHITE">
+      <font>
+      <Font name="Calisto MT Bold" size="16.0" />
+   </font>
+   </Label>
+   <Label alignment="CENTER_RIGHT" layoutX="4.0" layoutY="165.0" prefHeight="35.0" prefWidth="188.0" text="%lm_username" textAlignment="RIGHT" textFill="WHITE">
+      <font>
          <Font name="Calisto MT Bold" size="16.0" />
-      </font></Label>
-      <Label layoutX="84.0" layoutY="165.0" prefHeight="35.0" prefWidth="82.0" text="Username:" textFill="WHITE">
-         <font>
-            <Font name="Calisto MT Bold" size="16.0" />
-         </font></Label>
-      <Label layoutX="86.0" layoutY="221.0" prefHeight="35.0" prefWidth="75.0" text="Password:" textFill="WHITE">
-         <font>
-            <Font name="Calisto MT Bold" size="16.0" />
-         </font></Label>
-      <TextField id="lm_username_tf" fx:id="lm_username_tf" layoutX="174.0" layoutY="162.0" prefHeight="35.0" prefWidth="181.0" />
-      <TextField id="lm_password_tf" fx:id="lm_password_tf" layoutX="176.0" layoutY="220.0" prefHeight="35.0" prefWidth="181.0" />
-      <Button id="lm_login_btn" fx:id="lm_login_btn" layoutX="113.0" layoutY="301.0" mnemonicParsing="false" onAction="#lm_login_btn_clicked" prefHeight="25.0" prefWidth="214.0" text="LOGIN" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="Arial Black" size="12.0" />
-         </font></Button>
-      <Label layoutX="156.0" layoutY="49.0" prefHeight="68.0" prefWidth="127.0" text="LOGIN" textAlignment="CENTER" textFill="#ff9216">
-         <font>
-            <Font name="Calisto MT Bold" size="36.0" />
-         </font>
-      </Label>
-   </children>
+      </font>
+   </Label>
+   <Label layoutX="195.0" layoutY="173.0" prefHeight="10.0" prefWidth="10.0" text=":" textAlignment="CENTER" textFill="WHITE">
+      <font>
+         <Font name="Calisto MT" size="16.0" />
+      </font>
+   </Label>
+   <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="221.0" prefHeight="35.0" prefWidth="181.0" text="%lm_password" textAlignment="RIGHT" textFill="WHITE">
+      <font>
+         <Font name="Calisto MT Bold" size="16.0" />
+      </font>
+   </Label>
+   <TextField id="lm_username_tf" fx:id="lm_username_tf" layoutX="210.0" layoutY="164.0" prefHeight="35.0" prefWidth="181.0" />
+   <TextField id="lm_password_tf" fx:id="lm_password_tf" layoutX="210.0" layoutY="220.0" prefHeight="35.0" prefWidth="181.0" />
+   <Button id="lm_login_btn" fx:id="lm_login_btn" layoutX="113.0" layoutY="301.0" mnemonicParsing="false" onAction="#lm_login_btn_clicked" prefHeight="25.0" prefWidth="214.0" text="%lm_loginTitle" textAlignment="CENTER" textFill="WHITE">
+      <font>
+         <Font name="Arial Black" size="12.0" />
+      </font>
+   </Button>
+
+   <Label layoutX="195.0" layoutY="229.0" prefHeight="19.0" prefWidth="10.0" text=":" textFill="WHITE">
+      <font>
+         <Font name="Calisto MT" size="16.0" />
+      </font>
+   </Label>
 </AnchorPane>
