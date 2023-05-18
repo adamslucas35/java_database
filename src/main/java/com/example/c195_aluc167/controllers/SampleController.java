@@ -16,9 +16,8 @@ import java.util.ResourceBundle;
 
 public class SampleController implements Initializable {
 
-    public void goBack_clicked(ActionEvent actionEvent) throws IOException
+    public void logOut_clicked(ActionEvent actionEvent) throws IOException
     {
-
         MainApplication.loadScene("loginMain.fxml", 440, 440, "", actionEvent);
 //        ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
 //
@@ -34,5 +33,18 @@ public class SampleController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         System.out.println("Sample page has been initialized!");
+    }
+
+    public void ld_customer_clicked(ActionEvent actionEvent) throws IOException {
+        MainApplication.loadScene("customers.fxml", 600, 400, "", actionEvent);
+    }
+
+    public void ld_appointment_clicked(ActionEvent actionEvent) {
+        // ignore for now, still need to create appointments.fxml
+
+    }
+
+    public void log_out(ActionEvent actionEvent) throws IOException {
+        MainApplication.loadScene("loginMain.fxml", 440, 440, "", actionEvent);
     }
 }

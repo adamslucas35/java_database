@@ -14,7 +14,7 @@
          <Font name="Calisto MT Bold" size="36.0" />
       </font>
    </Label>
-   <Label fx:id="lm_location" alignment="CENTER" layoutX="97.0" layoutY="117.0" prefHeight="21.0" prefWidth="225.0" text="%lm_location" textAlignment="CENTER" textFill="WHITE">
+   <Label fx:id="lm_location" alignment="CENTER" layoutX="55.0" layoutY="106.0" prefHeight="38.0" prefWidth="330.0" text="%lm_location" textAlignment="CENTER" textFill="WHITE">
       <font>
       <Font name="Calisto MT Bold" size="16.0" />
    </font>

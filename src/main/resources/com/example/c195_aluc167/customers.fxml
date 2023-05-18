@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.c195_aluc167.controllers.CustomersController">
+   <children>
+      <TableView layoutX="9.0" layoutY="60.0" prefHeight="317.0" prefWidth="482.0" />
+      <Label fx:id="cs_title" layoutX="59.0" layoutY="21.0" prefHeight="23.0" prefWidth="125.0" text="%cs_title" textFill="WHITE">
+         <font>
+            <Font name="Calisto MT" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="cs_searchBar" layoutX="370.0" layoutY="20.0" prefHeight="25.0" prefWidth="186.0" promptText="%cs_searchBar" />
+      <Button fx:id="cs_createCustomer" alignment="CENTER" layoutX="491.0" layoutY="67.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" text="%cs_createCustomer" textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="cs_updateCustomer" alignment="CENTER" layoutX="491.0" layoutY="167.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" text="%cs_updateCustomer" textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="cs_removeCustomer" alignment="CENTER" layoutX="491.0" layoutY="267.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" text="%cs_removeCustomer" textAlignment="CENTER" wrapText="true" />
+      <Button layoutX="504.0" layoutY="345.0" mnemonicParsing="false" onAction="#cs_return_to_load" prefHeight="25.0" prefWidth="84.0" text="%go_back" />
+   </children>
+</AnchorPane>

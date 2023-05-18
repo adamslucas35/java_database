@@ -5,15 +5,70 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="777d5853-159a-4a69-8c52-d1b3f89f12fe" name="Changes" comment="login gui connects to database and displays errors correctly">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Lang.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Lang_de.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Lang_es.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Lang_fr.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/CustomersController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/allclasses-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/allpackages-index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/MainApplication.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/class-use/MainApplication.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/CustomersController.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/LoginMainController.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/SampleController.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/class-use/CustomersController.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/class-use/LoginMainController.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/class-use/SampleController.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/package-use.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/package-use.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/connector/JDBC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/connector/class-use/JDBC.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/connector/package-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/connector/package-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/connector/package-use.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/module-summary.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/element-list" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/help-doc.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-3.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-4.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-5.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-6.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-7.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-8.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/jquery-ui.overrides.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/legal/COPYRIGHT" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/legal/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/legal/jquery.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/legal/jqueryUI.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/member-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/module-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/overview-tree.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/package-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/resources/glass.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/resources/x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/script-dir/jquery-3.6.0.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/script-dir/jquery-ui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/script-dir/jquery-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/tag-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javadocs/type-search-index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/customers.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/LoginMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/LoginMainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/SampleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Lang.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Lang_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang_de.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Lang_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang_fr.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/loginMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/loginMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/sample.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +78,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="XML Properties File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -50,16 +105,16 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "17",
-    "last_opened_file_path": "C:/dev/C195_ALuc167",
+    "last_opened_file_path": "C:/dev/inventory-main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -75,6 +130,26 @@
       <recent name="C:\dev\C196__ALuc167\src\main\resources\com\example\c196__aluc167" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.c195_aluc167.MainApplication" />
+      <module name="C195_ALuc167" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.c195_aluc167.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainApplication" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -86,7 +161,10 @@
       <workItem from="1683965517635" duration="1693000" />
       <workItem from="1683972826924" duration="3835000" />
       <workItem from="1684140662327" duration="1003000" />
-      <workItem from="1684144185567" duration="9163000" />
+      <workItem from="1684144185567" duration="12673000" />
+      <workItem from="1684217515595" duration="6998000" />
+      <workItem from="1684380752416" duration="1370000" />
+      <workItem from="1684384642087" duration="4299000" />
     </task>
     <task id="LOCAL-00001" summary="saving data, login screen gui created, TODO: connect database and create error gui">
       <created>1683891616216</created>

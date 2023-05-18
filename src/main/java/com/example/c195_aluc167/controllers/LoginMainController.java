@@ -33,11 +33,16 @@ public class LoginMainController implements Initializable {
     @FXML private TextField lm_username_tf;
     @FXML private TextField lm_password_tf;
 
+    /**
+     * Initializes loginMain.fxml
+     * @param url url
+     * @param resourceBundle resourceBundles
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
 
-
+        // creating location variable to display when page is initialized
         Locale locale = Locale.getDefault();
         String country = locale.getDisplayCountry(locale);
         ResourceBundle bundle = ResourceBundle.getBundle("Lang");
@@ -45,6 +50,8 @@ public class LoginMainController implements Initializable {
         String formattedLocation = String.format(locationText, country);
         lm_location.setText(formattedLocation);
 
+
+        //temp to confirm language settings of computer locale
         if((Locale.getDefault().getLanguage().equals("de")) || (Locale.getDefault().getLanguage().equals("es")) || (Locale.getDefault().getLanguage().equals("fr")))
         {
             System.out.println(rb.getString("language"));
@@ -52,11 +59,12 @@ public class LoginMainController implements Initializable {
     }
 
     public void lm_login_btn_clicked(ActionEvent actionEvent) throws IOException, SQLException {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Lang", Locale.getDefault());
         if (lm_username_tf.getText().isEmpty() || lm_password_tf.getText().isEmpty())
         {
+            String errorFields = resourceBundle.getString("error_fields");
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Empty fields");
-            alert.setContentText("Please ensure that all text fields are \nfilled with the required information.");
+            alert.setContentText(errorFields);
             alert.showAndWait();
         }
         else if (!(lm_username_tf.getText().isEmpty() && lm_password_tf.getText().isEmpty()))
@@ -70,8 +78,9 @@ public class LoginMainController implements Initializable {
 
             if (!resultSet.isBeforeFirst())
             {
+                String errorUsername = resourceBundle.getString("error_username");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Provided username is incorrect!");
+                alert.setContentText(errorUsername);
                 alert.showAndWait();
             }
             else
@@ -81,7 +90,7 @@ public class LoginMainController implements Initializable {
                     String grabPassword = resultSet.getString("Password");
                     if(grabPassword.equals(lm_password_tf.getText()))
                     {
-                        MainApplication.loadScene("sample.fxml", 927, 366, "", actionEvent);
+                        MainApplication.loadScene("sample.fxml", 370, 261, "", actionEvent);
                         // Load sample page
 //                        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("sample.fxml"));
 //                        Stage stage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
@@ -92,8 +101,9 @@ public class LoginMainController implements Initializable {
                     }
                     else
                     {
+                        String errorPassword = resourceBundle.getString("error_password");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText("Password is incorrect!");
+                        alert.setContentText(errorPassword);
                         alert.showAndWait();
                     }
                 }

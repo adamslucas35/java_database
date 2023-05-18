@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.example.c196__aluc167","l":"com.example.c195_aluc167"},{"m":"com.example.c196__aluc167","l":"com.example.c195_aluc167.controllers"},{"m":"com.example.c196__aluc167","l":"connector"}];updateSearchResults();

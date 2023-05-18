@@ -29,6 +29,10 @@ public class MainApplication extends Application {
         stage.show();
     }
 
+    public static void return_to_load(ActionEvent actionEvent) throws IOException {
+        loadScene("sample.fxml", 370, 261, "", actionEvent);
+    }
+
     public static void loadScene(String fxmlFile, double width, double height, String title, ActionEvent actionEvent) throws IOException {
         ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
 
