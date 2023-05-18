@@ -5,70 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="777d5853-159a-4a69-8c52-d1b3f89f12fe" name="Changes" comment="login gui connects to database and displays errors correctly">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/CustomersController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/allclasses-index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/allpackages-index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/MainApplication.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/class-use/MainApplication.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/CustomersController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/LoginMainController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/SampleController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/class-use/CustomersController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/class-use/LoginMainController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/class-use/SampleController.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/controllers/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/com/example/c195_aluc167/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/connector/JDBC.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/connector/class-use/JDBC.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/connector/package-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/connector/package-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/connector/package-use.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/com.example.c196__aluc167/module-summary.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/element-list" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/help-doc.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-6.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-7.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index-files/index-8.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/jquery-ui.overrides.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/legal/COPYRIGHT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/legal/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/legal/jquery.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/legal/jqueryUI.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/member-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/module-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/overview-tree.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/package-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/resources/glass.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/resources/x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/script-dir/jquery-3.6.0.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/script-dir/jquery-ui.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/script-dir/jquery-ui.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/search.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/stylesheet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/tag-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/javadocs/type-search-index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/customers.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/appointments.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/contacts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/countries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/customers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/firstLevelDivision.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/user.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/LoginMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/LoginMainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/SampleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Lang.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Lang_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang_de.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Lang_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang_fr.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/loginMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/loginMain.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/connector/JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/connector/JDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/customers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/customers.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +46,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -111,7 +61,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.keymap",
@@ -164,7 +114,7 @@
       <workItem from="1684144185567" duration="12673000" />
       <workItem from="1684217515595" duration="6998000" />
       <workItem from="1684380752416" duration="1370000" />
-      <workItem from="1684384642087" duration="4299000" />
+      <workItem from="1684384642087" duration="10018000" />
     </task>
     <task id="LOCAL-00001" summary="saving data, login screen gui created, TODO: connect database and create error gui">
       <created>1683891616216</created>

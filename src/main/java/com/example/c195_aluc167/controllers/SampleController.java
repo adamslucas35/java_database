@@ -36,7 +36,7 @@ public class SampleController implements Initializable {
     }
 
     public void ld_customer_clicked(ActionEvent actionEvent) throws IOException {
-        MainApplication.loadScene("customers.fxml", 600, 400, "", actionEvent);
+        MainApplication.loadScene("customers.fxml", 754, 400, "", actionEvent);
     }
 
     public void ld_appointment_clicked(ActionEvent actionEvent) {

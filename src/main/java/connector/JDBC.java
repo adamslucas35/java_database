@@ -2,6 +2,7 @@ package connector;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public abstract class JDBC
 {
@@ -26,20 +27,25 @@ public abstract class JDBC
         }
         catch(Exception e)
         {
-            System.out.println("!!!Error: " + e);
+            e.printStackTrace();
         }
     }
 
     public static void closeConnection()
-    {
+     {
         try {
             Class.forName(driver);
             connection.close();
             System.out.println("Connection closed successfully!");
         } catch (Exception e)
         {
-            System.out.println("!!!Error: " + e);
+            e.printStackTrace();
         }
+    }
+
+    public static Connection getConnection()
+    {
+        return connection;
     }
 
 
