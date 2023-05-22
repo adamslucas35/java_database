@@ -128,4 +128,7 @@ public class customers
     public void setCustomerDivisionId(int customerDivisionId) {
         this.customerDivisionId = customerDivisionId;
     }
+
+
+
 }
