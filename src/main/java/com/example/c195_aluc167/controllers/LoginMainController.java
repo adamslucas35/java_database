@@ -4,20 +4,14 @@ import com.example.c195_aluc167.MainApplication;
 import connector.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -62,7 +56,7 @@ public class LoginMainController implements Initializable {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Lang", Locale.getDefault());
         if (lm_username_tf.getText().isEmpty() || lm_password_tf.getText().isEmpty())
         {
-            String errorFields = resourceBundle.getString("error_fields");
+            String errorFields = resourceBundle.getString("errorFields");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(errorFields);
             alert.showAndWait();
@@ -78,7 +72,7 @@ public class LoginMainController implements Initializable {
 
             if (!resultSet.isBeforeFirst())
             {
-                String errorUsername = resourceBundle.getString("error_username");
+                String errorUsername = resourceBundle.getString("errorUsername");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(errorUsername);
                 alert.showAndWait();
@@ -101,7 +95,7 @@ public class LoginMainController implements Initializable {
                     }
                     else
                     {
-                        String errorPassword = resourceBundle.getString("error_password");
+                        String errorPassword = resourceBundle.getString("errorPassword");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setContentText(errorPassword);
                         alert.showAndWait();

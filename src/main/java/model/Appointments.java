@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class appointments
+public class Appointments
 {
     private int appointmentId;
     private String title;
@@ -24,7 +24,7 @@ public class appointments
     private int userId;
     private int contactId;
 
-    public appointments(int appointmentId, String title, String description, String location, LocalDate startDate, LocalDateTime startTime, LocalDate endDate, LocalDateTime endTime, LocalDate createDate, LocalDateTime createTime, String createdBy, LocalDate updateDate, LocalDateTime updateTime, String updatedBy, int customerId, int userId, int contactId) {
+    public Appointments(int appointmentId, String title, String description, String location, LocalDate startDate, LocalDateTime startTime, LocalDate endDate, LocalDateTime endTime, LocalDate createDate, LocalDateTime createTime, String createdBy, LocalDate updateDate, LocalDateTime updateTime, String updatedBy, int customerId, int userId, int contactId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;

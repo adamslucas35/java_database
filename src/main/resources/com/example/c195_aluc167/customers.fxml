@@ -17,7 +17,7 @@
       <Button fx:id="cs_createCustomer" onAction="#cs_createCustomerClicked"  alignment="CENTER" layoutX="838.0" layoutY="64.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" text="%cs_createCustomer" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="cs_updateCustomer" onAction="#cs_modifyCustomerClicked" alignment="CENTER" layoutX="838.0" layoutY="164.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" text="%cs_updateCustomer" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="cs_removeCustomer" alignment="CENTER" layoutX="838.0" layoutY="264.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" text="%cs_removeCustomer" textAlignment="CENTER" wrapText="true" />
-      <Button layoutX="852.0" layoutY="348.0" onAction="#cs_return_to_load" prefHeight="25.0" prefWidth="78.0" text="%go_back" />
+      <Button layoutX="852.0" layoutY="348.0" onAction="#cs_return_to_load" prefHeight="25.0" prefWidth="78.0" text="%goBack" />
       <AnchorPane fx:id="cs_tableView" layoutX="14.0" layoutY="52.0" maxHeight="330.0" maxWidth="765.0" minHeight="330.0" minWidth="765.0" prefHeight="330.0" prefWidth="765.0" />
    </children>
 </AnchorPane>

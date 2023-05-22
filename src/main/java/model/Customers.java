@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class customers
+public class Customers
 {
     private int customerId;
     private String customerName;
@@ -18,7 +18,7 @@ public class customers
     private String customerLastUpdatedBy;
     private int customerDivisionId;
 
-    public customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, LocalDate customerCreateDate, LocalDateTime customerCreateTime, String customerCreatedBy, LocalDate customerLastUpdateDate, LocalDateTime customerLastUpdateTime, String customerLastUpdatedBy, int customerDivisionId) {
+    public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, LocalDate customerCreateDate, LocalDateTime customerCreateTime, String customerCreatedBy, LocalDate customerLastUpdateDate, LocalDateTime customerLastUpdateTime, String customerLastUpdatedBy, int customerDivisionId) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
@@ -33,6 +33,14 @@ public class customers
         this.customerDivisionId = customerDivisionId;
     }
 
+    public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone)
+    {
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.customerPostalCode = customerPostalCode;
+        this.customerPhone = customerPhone;
+    }
     public int getCustomerId() {
         return customerId;
     }

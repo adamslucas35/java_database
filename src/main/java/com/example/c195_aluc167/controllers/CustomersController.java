@@ -8,13 +8,15 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import model.Customers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,6 +41,9 @@ public class CustomersController implements Initializable  {
     private FilteredList<ObservableList<String>> filteredCustomers;
 
     private String q_selectAllCustomers = "SELECT * FROM customers";
+
+    ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
+
 
 
     public void loadFullTable()
@@ -123,8 +128,7 @@ public class CustomersController implements Initializable  {
                     }
                     if (!noQuery)
                     {
-                        ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
-                        String queryNotFound = rb.getString("no_query");
+                        String queryNotFound = rb.getString("noQuery");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setContentText(queryNotFound);
                         alert.showAndWait();
@@ -144,13 +148,35 @@ public class CustomersController implements Initializable  {
     }
 
 
-    public void cs_modifyCustomerClicked(ActionEvent actionEvent) {
+    public void cs_modifyCustomerClicked(ActionEvent actionEvent) throws IOException {
         ObservableList<String> selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
-        String customerId = selectedCustomer.get(0);
+        int customerId = Integer.parseInt(selectedCustomer.get(0));
         String customerName = selectedCustomer.get(1);
         String customerAddress = selectedCustomer.get(2);
         String customerPostal = selectedCustomer.get(3);
         String customerPhone = selectedCustomer.get(4);
+
+        if (selectedCustomer == null)
+        {
+            String noSelection = rb.getString("noSelection");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(noSelection);
+            alert.show();
+        } else
+        {
+
+            Customers customers = new Customers(customerId, customerName, customerAddress, customerPostal, customerPhone);
+            FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource("modifyCustomer.fxml"), rb);
+            Parent modifyCustomerRoot = loader.load();
+            ModifyCustomerController modifyCustomerController = loader.getController();
+
+            modifyCustomerController.receiveCustomer(customers);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(modifyCustomerRoot));
+            stage.show();
+        }
+
     }
 
 
