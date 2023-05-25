@@ -42,6 +42,8 @@ public class MainApplication extends Application {
         Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle(title);
+        stage.setX(200);
+        stage.setY(200);
         stage.show();
         if((Locale.getDefault().getLanguage().equals("de")) || (Locale.getDefault().getLanguage().equals("es")) || (Locale.getDefault().getLanguage().equals("fr")))
         {

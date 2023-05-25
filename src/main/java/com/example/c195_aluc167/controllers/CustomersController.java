@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Customers;
 
@@ -33,38 +34,63 @@ import java.util.ResourceBundle;
  */
 public class CustomersController implements Initializable  {
 
-    public AnchorPane cs_tableView;
+    public Pane cs_tableView;
     @FXML private TextField cs_searchBar;
 
     private TableView<ObservableList<String>> customerTableView;
-    private ObservableList<ObservableList<String>> customerData;
-    private FilteredList<ObservableList<String>> filteredCustomers;
 
-    private String q_selectAllCustomers = "SELECT * FROM customers";
+    private ObservableList<ObservableList<String>> customerData;
+
+    private String loadData = "SELECT c.Customer_ID, c.Customer_Name, c.Address, c.Postal_Code, c.Phone, ct.Country, c.Division_ID " +
+            "FROM customers c " +
+            "INNER JOIN first_level_divisions f ON f.Division_ID = c.Division_ID " +
+            "INNER JOIN countries ct ON ct.Country_ID = f.Country_ID";
+
 
     ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
 
-
-
-    public void loadFullTable()
-    {
+    public void createTable(ResultSet rs) throws SQLException {
         customerTableView = new TableView<>();
+        int insert = customerTableView.getColumns().size() - 1;
+        TableColumn<ObservableList<String>, String> joinedDataColumn = new TableColumn<>("JoinedData");
+        for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+            TableColumn<ObservableList<String>, String> tableColumn = new TableColumn<>(rs.getMetaData().getColumnName(i));
+            final int columnIndex = i;
+            tableColumn.setCellValueFactory(cellData ->
+                    new SimpleStringProperty(cellData.getValue().get(columnIndex - 1)));
+            tableColumn.setPrefWidth(120);
+            customerTableView.getColumns().add(tableColumn);
+            if (i == insert)
+            {
+                customerTableView.getColumns().add(joinedDataColumn);
+            }
+        }
+    }
+
+    /**
+     * Initialization of customers.fxml
+     * @param url url
+     * @param resourceBundle looking for resource bundle.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadFullTable(loadData);
+        System.out.println("Customer page has been initialized!");
+    }
+
+    public void loadFullTable(String query)
+    {
+
 
         customerData = FXCollections.observableArrayList();
         try {
+            String q_selectAllCustomers = loadData;
             PreparedStatement loadCustomer = JDBC.connection.prepareStatement(q_selectAllCustomers);
             ResultSet rs = loadCustomer.executeQuery();
 
+
             // Create table columns based on SQL columns
-            for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                TableColumn<ObservableList<String>, String> tableColumn = new TableColumn<>(rs.getMetaData().getColumnName(i));
-                final int columnIndex = i;
-                tableColumn.setCellValueFactory(cellData ->
-                        new SimpleStringProperty(cellData.getValue().get(columnIndex - 1)));
-                customerTableView.getColumns().add(tableColumn);
-            }
-
-
+            createTable(rs);
 
             //populate with data
             while (rs.next()) {
@@ -74,8 +100,6 @@ public class CustomersController implements Initializable  {
                 }
                 customerTableView.getItems().add(rowData);
             }
-
-
             cs_tableView.getChildren().add(customerTableView);
 
 
@@ -83,56 +107,38 @@ public class CustomersController implements Initializable  {
             throw new RuntimeException(e);
         }
 
-
-
-
     }
 
-    /**
-     * Initialization of customers.fxml
-     * @param url url
-     * @param resourceBundle looking for resource bundle.
-     */
-    @Override
-
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadFullTable();
-        System.out.println("Customer page has been initialized!");
-
-    }
-
-
-    public void cs_return_to_load(ActionEvent actionEvent) throws IOException {
-        MainApplication.return_to_load(actionEvent);
-    }
 
     public void cs_searchKeyPressed(KeyEvent keyEvent) {
+        String query = loadData + " WHERE c.Customer_Name LIKE ?";
         String searchedName = cs_searchBar.getText().toLowerCase();
-
         if (searchedName.isEmpty()) {
-            loadFullTable();
+            loadFullTable(loadData);
         } else {
             try {
-                PreparedStatement loadSearch = JDBC.connection.prepareStatement("SELECT * FROM customers WHERE Customer_Name LIKE ?");
+                PreparedStatement loadSearch = JDBC.connection.prepareStatement(query);
                 loadSearch.setString(1, "%" + searchedName + "%");
-                ResultSet ls = loadSearch.executeQuery();
                 customerTableView.getItems().clear();
+                ResultSet ls = loadSearch.executeQuery();
                 Boolean noQuery = false;
-                    while (ls.next()) {
-                        noQuery = true;
-                        ObservableList<String> rowData = FXCollections.observableArrayList();
-                        for (int i = 1; i <= ls.getMetaData().getColumnCount(); i++) {
-                            rowData.add(ls.getString(i));
-                        }
-                        customerTableView.getItems().add(rowData);
+                createTable(ls);
+                while (ls.next()) {
+                    noQuery = true;
+                    ObservableList<String> rowData = FXCollections.observableArrayList();
+                    for (int i = 1; i <= ls.getMetaData().getColumnCount(); i++) {
+                        rowData.add(ls.getString(i));
                     }
-                    if (!noQuery)
-                    {
-                        String queryNotFound = rb.getString("noQuery");
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText(queryNotFound);
-                        alert.showAndWait();
-                    }
+                    customerTableView.getItems().add(rowData);
+                }
+                cs_tableView.getChildren().add(customerTableView);
+                if (!noQuery)
+                {
+                    String queryNotFound = rb.getString("noQuery");
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setContentText(queryNotFound);
+                    alert.show();
+                }
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -143,8 +149,6 @@ public class CustomersController implements Initializable  {
     public void cs_createCustomerClicked(ActionEvent actionEvent)
     {
         //TODO, WELL CREATE CUSTOMER
-
-
     }
 
 
@@ -172,6 +176,9 @@ public class CustomersController implements Initializable  {
 
             modifyCustomerController.receiveCustomer(customers);
 
+            Stage oldStage = (Stage) cs_tableView.getScene().getWindow();
+            oldStage.close();
+
             Stage stage = new Stage();
             stage.setScene(new Scene(modifyCustomerRoot));
             stage.show();
@@ -179,8 +186,18 @@ public class CustomersController implements Initializable  {
 
     }
 
+    public void cs_removeCustomerClicked(ActionEvent actionEvent) throws IOException, SQLException {
+        ObservableList<String> selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
+        PreparedStatement ps = JDBC.connection.prepareStatement("DELETE FROM customers WHERE Customer_ID = ?");
+        ps.setString(1, selectedCustomer.get(0));
+        ps.executeUpdate();
+
+    }
 
 
+    public void cs_return_to_load(ActionEvent actionEvent) throws IOException {
+        MainApplication.return_to_load(actionEvent);
+    }
 
 
 

@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="777d5853-159a-4a69-8c52-d1b3f89f12fe" name="Changes" comment="login gui connects to database and displays errors correctly">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/ModifyCustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/CustomersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/CustomersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/LoginMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/LoginMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/appointments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Appointments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/contacts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Contacts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/countries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Countries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/customers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Customers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/firstLevelDivision.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/FirstLevelDivision.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/user.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Lang.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Lang_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang_fr.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/ModifyCustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/ModifyCustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/SampleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/customers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/customers.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/modifyCustomer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/modifyCustomer.fxml" afterDir="false" />
     </list>
@@ -64,7 +57,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/dev/inventory-main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/dev/C195_ALuc167&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -124,7 +117,9 @@
       <workItem from="1684217515595" duration="6998000" />
       <workItem from="1684380752416" duration="1370000" />
       <workItem from="1684384642087" duration="22271000" />
-      <workItem from="1684672265655" duration="9071000" />
+      <workItem from="1684672265655" duration="15212000" />
+      <workItem from="1684854675756" duration="23000" />
+      <workItem from="1684854754738" duration="9484000" />
     </task>
     <task id="LOCAL-00001" summary="saving data, login screen gui created, TODO: connect database and create error gui">
       <created>1683891616216</created>

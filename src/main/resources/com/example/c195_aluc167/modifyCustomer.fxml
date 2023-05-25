@@ -5,21 +5,21 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.c195_aluc167.controllers.ModifyCustomerController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="92.0" layoutY="32.0" prefHeight="17.0" prefWidth="403.0" text="%modify" textAlignment="CENTER" />
 
-      <TextField fx:id="mc_customerID_tf" layoutX="228.0" layoutY="77.0"/>
-      <TextField fx:id="mc_customerName_tf" layoutX="228.0" layoutY="117.0"/>
-      <TextField fx:id="mc_customerAddress_tf" layoutX="228.0" layoutY="157.0" />
-      <TextField fx:id="mc_customerPostal_tf" layoutX="228.0" layoutY="197.0" />
-      <TextField fx:id="mc_customerPhone_tf" layoutX="228.0" layoutY="237.0" />
-      <Label layoutX="145.0" layoutY="81.0" text="%mc_customerID" />
-      <Label layoutX="145.0" layoutY="121.0" text="%mc_customerName" />
-      <Label layoutX="145.0" layoutY="161.0" text="%mc_customerAddress" />
-      <Label layoutX="145.0" layoutY="201.0" text="%mc_customerPostal" />
-      <Label layoutX="145.0" layoutY="241.0" text="%mc_customerPhone" />
-      <Button layoutX="495.0" layoutY="332.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="%submit" />
+      <TextField fx:id="mc_customerID_tf" alignment="CENTER_RIGHT" layoutX="308.0" layoutY="77.0" />
+      <TextField fx:id="mc_customerName_tf" alignment="CENTER_RIGHT" layoutX="308.0" layoutY="117.0" />
+      <TextField fx:id="mc_customerAddress_tf" alignment="CENTER_RIGHT" layoutX="308.0" layoutY="157.0" />
+      <TextField fx:id="mc_customerPostal_tf" alignment="CENTER_RIGHT" layoutX="308.0" layoutY="197.0" />
+      <TextField fx:id="mc_customerPhone_tf" alignment="CENTER_RIGHT" layoutX="308.0" layoutY="237.0" />
+      <Label layoutX="142.0" layoutY="81.0" text="%mc_customerID" />
+      <Label layoutX="142.0" layoutY="121.0" text="%mc_customerName" />
+      <Label layoutX="142.0" layoutY="161.0" text="%mc_customerAddress" />
+      <Label layoutX="142.0" layoutY="201.0" text="%mc_customerPostal" />
+      <Label layoutX="142.0" layoutY="241.0" text="%mc_customerPhone" />
+      <Button layoutX="461.0" layoutY="332.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="25.0" prefWidth="99.0" text="%submit" />
+      <Button layoutX="92.0" layoutY="332.0" mnemonicParsing="false" onAction="#goBack"  prefHeight="25.0" prefWidth="73.0" text="%goBack" />
    </children>
 </AnchorPane>
