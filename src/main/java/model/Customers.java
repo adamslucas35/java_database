@@ -16,9 +16,9 @@ public class Customers
     private LocalDate customerLastUpdateDate;
     private LocalDateTime customerLastUpdateTime;
     private String customerLastUpdatedBy;
-    private int customerDivisionId;
+    private String customerDivision;
 
-    public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, LocalDate customerCreateDate, LocalDateTime customerCreateTime, String customerCreatedBy, LocalDate customerLastUpdateDate, LocalDateTime customerLastUpdateTime, String customerLastUpdatedBy, int customerDivisionId) {
+    public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, LocalDate customerCreateDate, LocalDateTime customerCreateTime, String customerCreatedBy, LocalDate customerLastUpdateDate, LocalDateTime customerLastUpdateTime, String customerLastUpdatedBy, String customerDivision) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
@@ -30,16 +30,17 @@ public class Customers
         this.customerLastUpdateDate = customerLastUpdateDate;
         this.customerLastUpdateTime = customerLastUpdateTime;
         this.customerLastUpdatedBy = customerLastUpdatedBy;
-        this.customerDivisionId = customerDivisionId;
+        this.customerDivision = customerDivision;
     }
 
-    public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone)
+    public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, String customerDivision)
     {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
         this.customerPostalCode = customerPostalCode;
         this.customerPhone = customerPhone;
+        this.customerDivision = customerDivision;
     }
     public int getCustomerId() {
         return customerId;
@@ -129,12 +130,12 @@ public class Customers
         this.customerLastUpdatedBy = customerLastUpdatedBy;
     }
 
-    public int getCustomerDivisionId() {
-        return customerDivisionId;
+    public String getCustomerDivision() {
+        return customerDivision;
     }
 
-    public void setCustomerDivisionId(int customerDivisionId) {
-        this.customerDivisionId = customerDivisionId;
+    public void setCustomerDivision(String customerDivision) {
+        this.customerDivision = customerDivision;
     }
 
 

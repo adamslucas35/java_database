@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,17 +10,21 @@
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="92.0" layoutY="32.0" prefHeight="17.0" prefWidth="403.0" text="%modify" textAlignment="CENTER" />
 
-      <TextField fx:id="mc_customerID_tf" alignment="CENTER_RIGHT" layoutX="308.0" layoutY="77.0" />
-      <TextField fx:id="mc_customerName_tf" alignment="CENTER_RIGHT" layoutX="308.0" layoutY="117.0" />
-      <TextField fx:id="mc_customerAddress_tf" alignment="CENTER_RIGHT" layoutX="308.0" layoutY="157.0" />
-      <TextField fx:id="mc_customerPostal_tf" alignment="CENTER_RIGHT" layoutX="308.0" layoutY="197.0" />
-      <TextField fx:id="mc_customerPhone_tf" alignment="CENTER_RIGHT" layoutX="308.0" layoutY="237.0" />
-      <Label layoutX="142.0" layoutY="81.0" text="%mc_customerID" />
-      <Label layoutX="142.0" layoutY="121.0" text="%mc_customerName" />
-      <Label layoutX="142.0" layoutY="161.0" text="%mc_customerAddress" />
-      <Label layoutX="142.0" layoutY="201.0" text="%mc_customerPostal" />
-      <Label layoutX="142.0" layoutY="241.0" text="%mc_customerPhone" />
+      <TextField fx:id="mc_customerID_tf" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="78.0" />
+      <TextField fx:id="mc_customerName_tf" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="118.0" />
+      <TextField fx:id="mc_customerAddress_tf" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="158.0" />
+      <TextField fx:id="mc_customerPostal_tf" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="198.0" />
+      <TextField fx:id="mc_customerPhone_tf" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="238.0" />
+      <Label layoutX="51.0" layoutY="82.0" text="%mc_customerID" />
+      <Label layoutX="51.0" layoutY="122.0" text="%mc_customerName" />
+      <Label layoutX="51.0" layoutY="162.0" text="%mc_customerAddress" />
+      <Label layoutX="51.0" layoutY="202.0" text="%mc_customerPostal" />
+      <Label layoutX="51.0" layoutY="242.0" text="%mc_customerPhone" />
       <Button layoutX="461.0" layoutY="332.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="25.0" prefWidth="99.0" text="%submit" />
-      <Button layoutX="92.0" layoutY="332.0" mnemonicParsing="false" onAction="#goBack"  prefHeight="25.0" prefWidth="73.0" text="%goBack" />
+      <Button layoutX="92.0" layoutY="332.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="73.0" text="%goBack" />
+      <ComboBox fx:id="mc_countryCombo" layoutX="410.0" layoutY="118.0" prefWidth="150.0" />
+      <ComboBox fx:id="mc_divisionCombo" layoutX="410.0" layoutY="198.0" prefWidth="150.0" />
+      <Label alignment="CENTER" layoutX="426.0" layoutY="82.0" prefHeight="17.0" prefWidth="106.0" text="%mc_country" />
+      <Label alignment="CENTER" layoutX="421.0" layoutY="170.0" prefHeight="17.0" prefWidth="123.0" text="%mc_divisionID" />
    </children>
 </AnchorPane>

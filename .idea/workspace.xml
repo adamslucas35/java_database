@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="777d5853-159a-4a69-8c52-d1b3f89f12fe" name="Changes" comment="login gui connects to database and displays errors correctly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/CustomersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/CustomersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/ModifyCustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/ModifyCustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/SampleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Countries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Countries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Customers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Customers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Lang.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Lang_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang_fr.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/customers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/customers.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/modifyCustomer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/modifyCustomer.fxml" afterDir="false" />
     </list>
@@ -119,7 +121,8 @@
       <workItem from="1684384642087" duration="22271000" />
       <workItem from="1684672265655" duration="15212000" />
       <workItem from="1684854675756" duration="23000" />
-      <workItem from="1684854754738" duration="9484000" />
+      <workItem from="1684854754738" duration="10291000" />
+      <workItem from="1685068212633" duration="14779000" />
     </task>
     <task id="LOCAL-00001" summary="saving data, login screen gui created, TODO: connect database and create error gui">
       <created>1683891616216</created>
@@ -157,6 +160,16 @@
     <MESSAGE value="saving data, login screen gui created, TODO: connect database and create error gui" />
     <MESSAGE value="login gui connects to database and displays errors correctly" />
     <option name="LAST_COMMIT_MESSAGE" value="login gui connects to database and displays errors correctly" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.sql.SQLException" package="java.sql" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

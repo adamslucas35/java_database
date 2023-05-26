@@ -17,6 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Countries;
 import model.Customers;
 
 import java.io.IOException;
@@ -25,6 +26,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -34,14 +36,17 @@ import java.util.ResourceBundle;
  */
 public class CustomersController implements Initializable  {
 
-    public Pane cs_tableView;
+    @FXML private Pane cs_tableView;
+    @FXML private Button cs_removeCustomer;
+    @FXML private Button cs_updateCustomer;
+    @FXML private Button cs_createCustomer;
     @FXML private TextField cs_searchBar;
 
     private TableView<ObservableList<String>> customerTableView;
 
     private ObservableList<ObservableList<String>> customerData;
 
-    private String loadData = "SELECT c.Customer_ID, c.Customer_Name, c.Address, c.Postal_Code, c.Phone, ct.Country, c.Division_ID " +
+    private String loadData = "SELECT c.Customer_ID, c.Customer_Name, c.Address, c.Postal_Code, c.Phone, ct.Country, f.Division " +
             "FROM customers c " +
             "INNER JOIN first_level_divisions f ON f.Division_ID = c.Division_ID " +
             "INNER JOIN countries ct ON ct.Country_ID = f.Country_ID";
@@ -87,7 +92,6 @@ public class CustomersController implements Initializable  {
             String q_selectAllCustomers = loadData;
             PreparedStatement loadCustomer = JDBC.connection.prepareStatement(q_selectAllCustomers);
             ResultSet rs = loadCustomer.executeQuery();
-
 
             // Create table columns based on SQL columns
             createTable(rs);
@@ -152,13 +156,15 @@ public class CustomersController implements Initializable  {
     }
 
 
-    public void cs_modifyCustomerClicked(ActionEvent actionEvent) throws IOException {
+    public void cs_modifyCustomerClicked(ActionEvent actionEvent) throws IOException, SQLException {
         ObservableList<String> selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
         int customerId = Integer.parseInt(selectedCustomer.get(0));
         String customerName = selectedCustomer.get(1);
         String customerAddress = selectedCustomer.get(2);
         String customerPostal = selectedCustomer.get(3);
         String customerPhone = selectedCustomer.get(4);
+        String customerCountry = selectedCustomer.get(5);
+        String customerDivision = selectedCustomer.get(6);
 
         if (selectedCustomer == null)
         {
@@ -168,13 +174,13 @@ public class CustomersController implements Initializable  {
             alert.show();
         } else
         {
-
-            Customers customers = new Customers(customerId, customerName, customerAddress, customerPostal, customerPhone);
+            Customers customers = new Customers(customerId, customerName, customerAddress, customerPostal, customerPhone, customerDivision);
+            Countries countries = new Countries(customerCountry);
             FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource("modifyCustomer.fxml"), rb);
             Parent modifyCustomerRoot = loader.load();
             ModifyCustomerController modifyCustomerController = loader.getController();
 
-            modifyCustomerController.receiveCustomer(customers);
+            modifyCustomerController.receiveCustomer(customers, countries);
 
             Stage oldStage = (Stage) cs_tableView.getScene().getWindow();
             oldStage.close();
@@ -187,11 +193,39 @@ public class CustomersController implements Initializable  {
     }
 
     public void cs_removeCustomerClicked(ActionEvent actionEvent) throws IOException, SQLException {
-        ObservableList<String> selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
-        PreparedStatement ps = JDBC.connection.prepareStatement("DELETE FROM customers WHERE Customer_ID = ?");
-        ps.setString(1, selectedCustomer.get(0));
-        ps.executeUpdate();
 
+        ObservableList<String> selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
+        if (selectedCustomer == null)
+        {
+            String noSelection = rb.getString("noSelection");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(noSelection);
+            alert.show();
+        } else {
+            PreparedStatement nameString = JDBC.connection.prepareStatement("SELECT Customer_Name FROM customers WHERE Customer_ID = ?");
+            nameString.setString(1, selectedCustomer.get(0));
+            String customerName = null;
+            ResultSet rs = nameString.executeQuery();
+            while (rs.next()) {
+                customerName = rs.getString("Customer_Name");
+            }
+            String delete = rb.getString("deletion");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText(customerName + " " + delete);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                PreparedStatement ps = JDBC.connection.prepareStatement("DELETE FROM customers WHERE Customer_ID = ?");
+                ps.setString(1, selectedCustomer.get(0));
+                ps.executeUpdate();
+            } else if (result.get() == ButtonType.CANCEL) {
+                System.out.println("CANCELLED");
+
+            } else if (!result.isPresent()) {
+                System.out.println("EXITED");
+            }
+
+            loadFullTable(loadData);
+        }
     }
 
 
