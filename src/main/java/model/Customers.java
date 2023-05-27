@@ -17,8 +17,9 @@ public class Customers
     private LocalDateTime customerLastUpdateTime;
     private String customerLastUpdatedBy;
     private String customerDivision;
+    private String customerCountry;
 
-    public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, LocalDate customerCreateDate, LocalDateTime customerCreateTime, String customerCreatedBy, LocalDate customerLastUpdateDate, LocalDateTime customerLastUpdateTime, String customerLastUpdatedBy, String customerDivision) {
+    public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, LocalDate customerCreateDate, LocalDateTime customerCreateTime, String customerCreatedBy, LocalDate customerLastUpdateDate, LocalDateTime customerLastUpdateTime, String customerLastUpdatedBy, String customerDivision, String customerCountry) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
@@ -31,9 +32,10 @@ public class Customers
         this.customerLastUpdateTime = customerLastUpdateTime;
         this.customerLastUpdatedBy = customerLastUpdatedBy;
         this.customerDivision = customerDivision;
+        this.customerCountry = customerCountry;
     }
 
-    public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, String customerDivision)
+    public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, String customerDivision, String customerCountry)
     {
         this.customerId = customerId;
         this.customerName = customerName;
@@ -41,6 +43,7 @@ public class Customers
         this.customerPostalCode = customerPostalCode;
         this.customerPhone = customerPhone;
         this.customerDivision = customerDivision;
+        this.customerCountry = customerCountry;
     }
     public int getCustomerId() {
         return customerId;
@@ -138,6 +141,11 @@ public class Customers
         this.customerDivision = customerDivision;
     }
 
+    public String getCustomerCountry() {
+        return customerCountry;
+    }
 
-
+    public void setCustomerCountry(String customerCountry) {
+        this.customerCountry = customerCountry;
+    }
 }

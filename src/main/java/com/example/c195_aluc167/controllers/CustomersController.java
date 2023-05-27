@@ -52,6 +52,7 @@ public class CustomersController implements Initializable  {
             "INNER JOIN countries ct ON ct.Country_ID = f.Country_ID";
 
 
+
     ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
 
     public void createTable(ResultSet rs) throws SQLException {
@@ -85,8 +86,6 @@ public class CustomersController implements Initializable  {
 
     public void loadFullTable(String query)
     {
-
-
         customerData = FXCollections.observableArrayList();
         try {
             String q_selectAllCustomers = loadData;
@@ -158,23 +157,24 @@ public class CustomersController implements Initializable  {
 
     public void cs_modifyCustomerClicked(ActionEvent actionEvent) throws IOException, SQLException {
         ObservableList<String> selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
-        int customerId = Integer.parseInt(selectedCustomer.get(0));
-        String customerName = selectedCustomer.get(1);
-        String customerAddress = selectedCustomer.get(2);
-        String customerPostal = selectedCustomer.get(3);
-        String customerPhone = selectedCustomer.get(4);
-        String customerCountry = selectedCustomer.get(5);
-        String customerDivision = selectedCustomer.get(6);
-
         if (selectedCustomer == null)
         {
             String noSelection = rb.getString("noSelection");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(noSelection);
-            alert.show();
-        } else
+            alert.showAndWait();
+        }
+        else
         {
-            Customers customers = new Customers(customerId, customerName, customerAddress, customerPostal, customerPhone, customerDivision);
+            int customerId = Integer.parseInt(selectedCustomer.get(0));
+            String customerName = selectedCustomer.get(1);
+            String customerAddress = selectedCustomer.get(2);
+            String customerPostal = selectedCustomer.get(3);
+            String customerPhone = selectedCustomer.get(4);
+            String customerCountry = selectedCustomer.get(5);
+            String customerDivision = selectedCustomer.get(6);
+
+            Customers customers = new Customers(customerId, customerName, customerAddress, customerPostal, customerPhone, customerDivision, customerCountry);
             Countries countries = new Countries(customerCountry);
             FXMLLoader loader = new FXMLLoader(MainApplication.class.getResource("modifyCustomer.fxml"), rb);
             Parent modifyCustomerRoot = loader.load();
@@ -189,10 +189,10 @@ public class CustomersController implements Initializable  {
             stage.setScene(new Scene(modifyCustomerRoot));
             stage.show();
         }
-
     }
 
-    public void cs_removeCustomerClicked(ActionEvent actionEvent) throws IOException, SQLException {
+    public void cs_removeCustomerClicked(ActionEvent actionEvent) throws IOException, SQLException
+    {
 
         ObservableList<String> selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
         if (selectedCustomer == null)
@@ -229,7 +229,8 @@ public class CustomersController implements Initializable  {
     }
 
 
-    public void cs_return_to_load(ActionEvent actionEvent) throws IOException {
+    public void cs_return_to_load(ActionEvent actionEvent) throws IOException
+    {
         MainApplication.return_to_load(actionEvent);
     }
 
