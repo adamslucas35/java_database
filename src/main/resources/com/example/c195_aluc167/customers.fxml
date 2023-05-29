@@ -15,7 +15,7 @@
          </font>
       </Label>
       <TextField fx:id="cs_searchBar" layoutX="694.0" layoutY="20.0" onKeyReleased="#cs_searchKeyPressed" prefHeight="25.0" prefWidth="186.0" promptText="%cs_searchBar" />
-      <Button fx:id="cs_createCustomer" alignment="CENTER" layoutX="896.0" layoutY="64.0" mnemonicParsing="false" onAction="#cs_createCustomerClicked" prefHeight="42.0" prefWidth="105.0" text="%cs_createCustomer" textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="cs_createCustomer" alignment="CENTER" layoutX="896.0" layoutY="64.0" mnemonicParsing="false" onAction="#cs_createCustomerClicked" prefHeight="42.0" prefWidth="105.0" text="%createCustomer" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="cs_updateCustomer" alignment="CENTER" layoutX="896.0" layoutY="164.0" mnemonicParsing="false" onAction="#cs_modifyCustomerClicked" prefHeight="42.0" prefWidth="105.0" text="%cs_updateCustomer" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="cs_removeCustomer" alignment="CENTER" layoutX="896.0" layoutY="264.0" mnemonicParsing="false" onAction="#cs_removeCustomerClicked" prefHeight="42.0" prefWidth="105.0" text="%cs_removeCustomer" textAlignment="CENTER" wrapText="true" />
       <Button layoutX="910.0" layoutY="348.0" onAction="#cs_return_to_load" prefHeight="25.0" prefWidth="78.0" text="%goBack" />

@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="777d5853-159a-4a69-8c52-d1b3f89f12fe" name="Changes" comment="login gui connects to database and displays errors correctly">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/CreateCustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/createCustomer.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/CustomersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/CustomersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/ModifyCustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/ModifyCustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Customers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Customers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Lang.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Lang_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang_de.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Lang_es.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang_es.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Lang_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang_fr.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/customers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/customers.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/modifyCustomer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/modifyCustomer.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +26,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="XML Properties File" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -121,7 +126,7 @@
       <workItem from="1684854675756" duration="23000" />
       <workItem from="1684854754738" duration="10291000" />
       <workItem from="1685068212633" duration="14993000" />
-      <workItem from="1685181515830" duration="7170000" />
+      <workItem from="1685181515830" duration="15094000" />
     </task>
     <task id="LOCAL-00001" summary="saving data, login screen gui created, TODO: connect database and create error gui">
       <created>1683891616216</created>
@@ -167,24 +172,6 @@
           <properties class="java.sql.SQLException" package="java.sql" />
           <option name="timeStamp" value="2" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/ModifyCustomerController.java</url>
-          <line>60</line>
-          <properties class="com.example.c195_aluc167.controllers.ModifyCustomerController" method="onCountryComboOpened">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/ModifyCustomerController.java</url>
-          <line>105</line>
-          <properties class="com.example.c195_aluc167.controllers.ModifyCustomerController" method="onSubmit">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

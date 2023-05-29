@@ -149,13 +149,14 @@ public class CustomersController implements Initializable  {
 
         }
     }
-    public void cs_createCustomerClicked(ActionEvent actionEvent)
+
+    public void cs_createCustomerClicked(ActionEvent actionEvent) throws IOException
     {
-        //TODO, WELL CREATE CUSTOMER
+        MainApplication.loadScene("createCustomer.fxml", 600, 400, "", actionEvent);
     }
 
-
-    public void cs_modifyCustomerClicked(ActionEvent actionEvent) throws IOException, SQLException {
+    public void cs_modifyCustomerClicked(ActionEvent actionEvent) throws IOException, SQLException
+    {
         ObservableList<String> selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
         if (selectedCustomer == null)
         {
@@ -227,6 +228,9 @@ public class CustomersController implements Initializable  {
             loadFullTable(loadData);
         }
     }
+
+
+
 
 
     public void cs_return_to_load(ActionEvent actionEvent) throws IOException

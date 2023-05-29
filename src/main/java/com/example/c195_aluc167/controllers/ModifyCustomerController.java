@@ -20,6 +20,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static connector.JDBC.connection;
@@ -103,34 +104,58 @@ public class ModifyCustomerController implements Initializable {
 
 
 
-    public void onSubmit(ActionEvent actionEvent)
-    {
+    public void onSubmit(ActionEvent actionEvent) throws SQLException {
         String divisionID = null;
+        String ds = null, cs = null;
 
-        try {
-            String selectedDivision = mc_divisionCombo.getValue();
-            PreparedStatement ps = connection.prepareStatement("SELECT Division_ID from first_level_divisions WHERE Division = ?");
-            ps.setString(1, selectedDivision);
-            ResultSet rs = ps.executeQuery();
-
-            PreparedStatement updateQuery = connection.prepareStatement("UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?");
-            updateQuery.setString(1, mc_customerName_tf.getText());
-            updateQuery.setString(2, mc_customerAddress_tf.getText());
-            updateQuery.setString(3, mc_customerPostal_tf.getText());
-            updateQuery.setString(4, mc_customerPhone_tf.getText());
-            while(rs.next())
-            {
-                updateQuery.setString(5, rs.getString("Division_ID"));
-            }
-            updateQuery.setString(6, mc_customerID_tf.getText());
-            updateQuery.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        PreparedStatement countryCheck = connection.prepareStatement("SELECT Country_ID FROM countries WHERE Country = ?");
+        countryCheck.setString(1, mc_countryCombo.getValue());
+        ResultSet countrySet = countryCheck.executeQuery();
+        while(countrySet.next())
+        {
+            cs = countrySet.getString("Country_ID");
         }
-        try {
-            MainApplication.loadScene("customers.fxml", 1050, 500, "", actionEvent);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+
+        PreparedStatement divisionCheck = connection.prepareStatement("SELECT Country_ID FROM first_level_divisions WHERE Division = ?");
+        divisionCheck.setString(1, mc_divisionCombo.getValue());
+        ResultSet divisionSet = divisionCheck.executeQuery();
+        while(divisionSet.next())
+        {
+            ds = divisionSet.getString("Country_ID");
+        }
+
+        if (!(Objects.equals(cs, ds)))
+        {
+            String noMatch = rb.getString("noMatch");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(noMatch);
+            alert.showAndWait();
+        }
+        else {
+            try {
+                String selectedDivision = mc_divisionCombo.getValue();
+                PreparedStatement ps = connection.prepareStatement("SELECT Division_ID from first_level_divisions WHERE Division = ?");
+                ps.setString(1, selectedDivision);
+                ResultSet rs = ps.executeQuery();
+
+                PreparedStatement updateQuery = connection.prepareStatement("UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID = ?");
+                updateQuery.setString(1, mc_customerName_tf.getText());
+                updateQuery.setString(2, mc_customerAddress_tf.getText());
+                updateQuery.setString(3, mc_customerPostal_tf.getText());
+                updateQuery.setString(4, mc_customerPhone_tf.getText());
+                while (rs.next()) {
+                    updateQuery.setString(5, rs.getString("Division_ID"));
+                }
+                updateQuery.setString(6, mc_customerID_tf.getText());
+                updateQuery.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                MainApplication.loadScene("customers.fxml", 1050, 500, "", actionEvent);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
     }
@@ -141,7 +166,6 @@ public class ModifyCustomerController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
 }
