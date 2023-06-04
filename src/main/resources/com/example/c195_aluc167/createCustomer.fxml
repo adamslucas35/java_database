@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.c195_aluc167.controllers.CreateCustomerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.c195_aluc167.controllers.CreateCustomerController">
     <children>
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="92.0" layoutY="32.0" prefHeight="17.0" prefWidth="403.0" text="%createCustomer" textAlignment="CENTER" />
 
-        <TextField fx:id="cc_customerID_tf" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="78.0" />
-        <TextField fx:id="cc_customerName_tf" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="118.0" />
-        <TextField fx:id="cc_customerAddress_tf" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="158.0" />
-        <TextField fx:id="cc_customerPostal_tf" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="198.0" />
-        <TextField fx:id="cc_customerPhone_tf" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="238.0" />
-        <Label layoutX="51.0" layoutY="82.0" text="%customerID" />
-        <Label layoutX="51.0" layoutY="122.0" text="%customerName" />
-        <Label layoutX="51.0" layoutY="162.0" text="%customerAddress" />
-        <Label layoutX="51.0" layoutY="202.0" text="%customerPostal" />
-        <Label layoutX="51.0" layoutY="242.0" text="%customerPhone" />
-        <ComboBox fx:id="cc_countryCombo" layoutX="410.0" layoutY="118.0" prefWidth="150.0" onMousePressed="#onCountryComboOpened"/>
-        <ComboBox fx:id="cc_divisionCombo" layoutX="410.0" layoutY="198.0" prefWidth="150.0" onMousePressed="#onDivisionComboOpened" />
-        <Label alignment="CENTER" layoutX="426.0" layoutY="82.0" prefHeight="17.0" prefWidth="106.0" text="%country" />
+        <TextField fx:id="cc_customerID_tf" layoutX="217.0" layoutY="78.0" />
+        <TextField fx:id="cc_customerName_tf" layoutX="217.0" layoutY="118.0" />
+        <TextField fx:id="cc_customerAddress_tf" layoutX="217.0" layoutY="158.0" />
+        <TextField fx:id="cc_customerPostal_tf" layoutX="217.0" layoutY="198.0" />
+        <TextField fx:id="cc_customerPhone_tf" layoutX="217.0" layoutY="238.0" />
+        <Label alignment="CENTER_RIGHT" layoutX="99.0" layoutY="82.0" prefHeight="17.0" prefWidth="100" text="%customerID" />
+        <Label alignment="CENTER_RIGHT" layoutX="99.0" layoutY="122.0" prefHeight="17.0" prefWidth="100" text="%customerName" />
+        <Label alignment="CENTER_RIGHT" layoutX="99.0" layoutY="161.0" prefHeight="17.0" prefWidth="100" text="%customerAddress" />
+        <Label alignment="CENTER_RIGHT" layoutX="99.0" layoutY="202.0" prefHeight="17.0" prefWidth="100" text="%customerPostal" />
+        <Label alignment="CENTER_RIGHT" layoutX="99.0" layoutY="242.0" prefHeight="17.0" prefWidth="100" text="%customerPhone" />
+        <ComboBox fx:id="cc_countryCombo" layoutX="410.0" layoutY="118.0" onMousePressed="#onCountryComboOpened" prefWidth="150.0" />
+        <ComboBox fx:id="cc_divisionCombo" layoutX="410.0" layoutY="198.0" onMousePressed="#onDivisionComboOpened" prefWidth="150.0" />
+        <Label alignment="CENTER" layoutX="426.0" layoutY="82.0" prefHeight="17.0" prefWidth="123.0" text="%country" />
         <Label alignment="CENTER" layoutX="421.0" layoutY="170.0" prefHeight="17.0" prefWidth="123.0" text="%divisionID" />
         <Button layoutX="461.0" layoutY="332.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="25.0" prefWidth="99.0" text="%submit" />
         <Button layoutX="92.0" layoutY="332.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="73.0" text="%goBack" />

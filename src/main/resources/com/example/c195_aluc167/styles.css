@@ -16,7 +16,7 @@
     -fx-text-fill: #ff9216;
 }
 
-#lm_login_btn:hover
+#lm_login_btn:hover, #lm_login_btn:focused
 {
     -fx-background-color: #ff9216;
     -fx-border-radius: 25px;

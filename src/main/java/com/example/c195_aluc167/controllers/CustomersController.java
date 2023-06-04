@@ -5,7 +5,6 @@ import connector.JDBC;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Countries;
@@ -46,7 +44,7 @@ public class CustomersController implements Initializable  {
 
     private ObservableList<ObservableList<String>> customerData;
 
-    private String loadData = "SELECT c.Customer_ID, c.Customer_Name, c.Address, c.Postal_Code, c.Phone, ct.Country, f.Division " +
+    private String queryLoadData = "SELECT c.Customer_ID, c.Customer_Name, c.Address, c.Postal_Code, c.Phone, ct.Country, f.Division " +
             "FROM customers c " +
             "INNER JOIN first_level_divisions f ON f.Division_ID = c.Division_ID " +
             "INNER JOIN countries ct ON ct.Country_ID = f.Country_ID";
@@ -55,7 +53,8 @@ public class CustomersController implements Initializable  {
 
     ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
 
-    public void createTable(ResultSet rs) throws SQLException {
+    public void createCustomerTable(ResultSet rs) throws SQLException
+    {
         customerTableView = new TableView<>();
         int insert = customerTableView.getColumns().size() - 1;
         TableColumn<ObservableList<String>, String> joinedDataColumn = new TableColumn<>("JoinedData");
@@ -69,8 +68,7 @@ public class CustomersController implements Initializable  {
             if (i == insert)
             {
                 customerTableView.getColumns().add(joinedDataColumn);
-            }
-        }
+            }}
     }
 
     /**
@@ -80,20 +78,20 @@ public class CustomersController implements Initializable  {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadFullTable(loadData);
+        loadCustomerTable(queryLoadData);
         System.out.println("Customer page has been initialized!");
     }
 
-    public void loadFullTable(String query)
+    public void loadCustomerTable(String query)
     {
         customerData = FXCollections.observableArrayList();
         try {
-            String q_selectAllCustomers = loadData;
+            String q_selectAllCustomers = queryLoadData;
             PreparedStatement loadCustomer = JDBC.connection.prepareStatement(q_selectAllCustomers);
             ResultSet rs = loadCustomer.executeQuery();
 
             // Create table columns based on SQL columns
-            createTable(rs);
+            createCustomerTable(rs);
 
             //populate with data
             while (rs.next()) {
@@ -114,10 +112,10 @@ public class CustomersController implements Initializable  {
 
 
     public void cs_searchKeyPressed(KeyEvent keyEvent) {
-        String query = loadData + " WHERE c.Customer_Name LIKE ?";
+        String query = queryLoadData + " WHERE c.Customer_Name LIKE ?";
         String searchedName = cs_searchBar.getText().toLowerCase();
         if (searchedName.isEmpty()) {
-            loadFullTable(loadData);
+            loadCustomerTable(queryLoadData);
         } else {
             try {
                 PreparedStatement loadSearch = JDBC.connection.prepareStatement(query);
@@ -125,7 +123,7 @@ public class CustomersController implements Initializable  {
                 customerTableView.getItems().clear();
                 ResultSet ls = loadSearch.executeQuery();
                 Boolean noQuery = false;
-                createTable(ls);
+                createCustomerTable(ls);
                 while (ls.next()) {
                     noQuery = true;
                     ObservableList<String> rowData = FXCollections.observableArrayList();
@@ -225,11 +223,9 @@ public class CustomersController implements Initializable  {
                 System.out.println("EXITED");
             }
 
-            loadFullTable(loadData);
+            loadCustomerTable(queryLoadData);
         }
     }
-
-
 
 
 

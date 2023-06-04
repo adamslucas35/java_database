@@ -10,11 +10,15 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <AnchorPane prefHeight="221.0" prefWidth="359.0">
-      <children>
-         <Label alignment="CENTER" layoutX="45.0" layoutY="27.0" prefHeight="17.0" prefWidth="243.0" text="%ld_whatDo" />
-         <Button layoutX="14.0" layoutY="79.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="%ld_customers" onAction="#ld_customer_clicked" />
-         <Button layoutX="208.0" layoutY="79.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="%ld_appointments" onAction="#ld_appointment_clicked" /><Button layoutX="107.0" layoutY="152.0" onAction="#log_out" prefHeight="25.0" prefWidth="115.0" text="%ld_logout" />
-      </children>
-   </AnchorPane>
+    <AnchorPane prefHeight="221.0" prefWidth="359.0">
+        <Label alignment="CENTER" layoutX="45.0" layoutY="27.0" prefHeight="17.0" prefWidth="243.0" text="%ld_whatDo"/>
+        <Button layoutX="14.0" layoutY="79.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="%customer"
+                onAction="#ld_customer_clicked"/>
+        <Button layoutX="208.0" layoutY="79.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="%appointment"
+                onAction="#ld_appointment_clicked"/>
+        <Button layoutX="107.0" layoutY="152.0" onAction="#log_out" prefHeight="25.0" prefWidth="115.0"
+                text="%ld_logout"/>
+    </AnchorPane>
 </VBox>

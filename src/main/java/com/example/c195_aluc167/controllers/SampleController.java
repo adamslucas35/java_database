@@ -39,8 +39,8 @@ public class SampleController implements Initializable {
         MainApplication.loadScene("customers.fxml", 1050, 500, "", actionEvent);
     }
 
-    public void ld_appointment_clicked(ActionEvent actionEvent) {
-        // ignore for now, still need to create appointments.fxml
+    public void ld_appointment_clicked(ActionEvent actionEvent) throws IOException {
+        MainApplication.loadScene("appointments.fxml", 1200, 500, "", actionEvent);
 
     }
 

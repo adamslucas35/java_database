@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.ComboBox?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.c195_aluc167.controllers.CreateAppointmentController">
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="137.0" layoutY="14.0" prefHeight="17.0" prefWidth="403.0" text="%createAppointment">
+      <font>
+         <Font name="Calisto MT Bold" size="14.0" />
+      </font></Label>
+   <Label alignment="CENTER_RIGHT" layoutX="24.0" layoutY="59.0" prefHeight="17.0" prefWidth="139.0" text="%appointmentID" />
+   <TextField fx:id="ma_appointmentID_tf" layoutX="170.0" layoutY="55.0" prefWidth="160.0" />
+   <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="59.0" prefHeight="17.0" prefWidth="139.0" text="%appointmentTitle" />
+   <TextField fx:id="ma_appointmentTitle_tf" layoutX="465.0" layoutY="55.0" prefWidth="160.0" />
+   <Label alignment="CENTER_RIGHT" layoutX="24.0" layoutY="99.0" prefHeight="17.0" prefWidth="139.0" text="%appointmentDescription" />
+   <TextField fx:id="ma_appointmentDescription_tf" layoutX="170.0" layoutY="95.0" prefWidth="160.0" />
+   <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="99.0" prefHeight="17.0" prefWidth="139.0" text="%appointmentLocation" />
+   <TextField fx:id="ma_appointmentLocation_tf" layoutX="465.0" layoutY="95.0" prefWidth="160.0" />
+   <Label alignment="CENTER_RIGHT" layoutX="24.0" layoutY="139.0" prefHeight="17.0" prefWidth="139.0" text="%appointmentContact" />
+   <ComboBox fx:id="ma_appointmentContact_cb" layoutX="170.0" layoutY="135.0" prefWidth="160.0" onMousePressed="#appointmentContactClicked" />
+   <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="139.0" prefHeight="17.0" prefWidth="139.0" text="%appointmentType" />
+   <TextField fx:id="ma_appointmentType_tf" layoutX="465.0" layoutY="135.0" prefWidth="160.0" />
+   <Label alignment="CENTER_RIGHT" layoutX="24.0" layoutY="179.0" prefHeight="17.0" prefWidth="139.0" text="%appointmentStartD" />
+   <DatePicker fx:id="ma_startDate" layoutX="170.0" layoutY="175.0" prefHeight="25.0" prefWidth="160.0" promptText="%formatMonth" />
+   <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="179.0" prefHeight="17.0" prefWidth="139.0" text="%appointmentStartT" />
+   <TextField fx:id="ma_appointmentStart_tf" layoutX="465.0" layoutY="175.0" prefWidth="160.0" promptText="%formatTime" />
+   <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="219.0" prefHeight="17.0" prefWidth="139.0" text="%appointmentEndD" />
+   <DatePicker fx:id="ma_endDate" layoutX="170.0" layoutY="215.0" prefHeight="25.0" prefWidth="160.0" promptText="%formatMonth" />
+   <Label alignment="CENTER_RIGHT" layoutX="24.0" layoutY="219.0" prefHeight="17.0" prefWidth="139.0" text="%appointmentEndT" />
+   <TextField fx:id="ma_appointmentEnd_tf" layoutX="465.0" layoutY="215.0" prefWidth="160.0" promptText="%formatTime" />
+   <Label alignment="CENTER_RIGHT" layoutX="24.0" layoutY="259.0" prefHeight="17.0" prefWidth="139.0" text="%appointmentCustomerID" />
+   <TextField fx:id="ma_appointmentCustomerID_tf" layoutX="170.0" layoutY="255.0" prefWidth="160.0" />
+   <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="259.0" prefHeight="17.0" prefWidth="139.0" text="%appointmentUserID" />
+   <TextField fx:id="ma_appointmentUserID_tf" layoutX="465.0" layoutY="255.0" prefWidth="160.0" />
+   <Button layoutX="508.0" layoutY="314.0" mnemonicParsing="false" onAction="#onSubmit" prefHeight="25.0" prefWidth="99.0" text="%submit" />
+   <Button layoutX="384.0" layoutY="314.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="73.0" text="%goBack" />
+</AnchorPane>
