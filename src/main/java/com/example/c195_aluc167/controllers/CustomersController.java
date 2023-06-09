@@ -77,7 +77,8 @@ public class CustomersController implements Initializable  {
      * @param resourceBundle looking for resource bundle.
      */
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
         loadCustomerTable(queryLoadData);
         System.out.println("Customer page has been initialized!");
     }

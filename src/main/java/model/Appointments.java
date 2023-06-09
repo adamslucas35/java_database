@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Appointments
 {
@@ -9,10 +10,11 @@ public class Appointments
     private String title;
     private String description;
     private String location;
+    private String type;
     private LocalDate startDate;
-    private LocalDateTime startTime;
+    private LocalTime startTime;
     private LocalDate endDate;
-    private LocalDateTime endTime;
+    private LocalTime endTime;
     private LocalDate createDate;
     private LocalDateTime createTime;
     private String createdBy;
@@ -24,24 +26,18 @@ public class Appointments
     private int userId;
     private int contactId;
 
-    public Appointments(int appointmentId, String title, String description, String location, LocalDate startDate, LocalDateTime startTime, LocalDate endDate, LocalDateTime endTime, LocalDate createDate, LocalDateTime createTime, String createdBy, LocalDate updateDate, LocalDateTime updateTime, String updatedBy, int customerId, int userId, int contactId) {
+    public Appointments(int appointmentId, String title, String description, String location, String type, LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime, int customerId, int userId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
         this.location = location;
+        this.type = type;
         this.startDate = startDate;
         this.startTime = startTime;
         this.endDate = endDate;
         this.endTime = endTime;
-        this.createDate = createDate;
-        this.createTime = createTime;
-        this.createdBy = createdBy;
-        this.updateDate = updateDate;
-        this.updateTime = updateTime;
-        this.updatedBy = updatedBy;
         this.customerId = customerId;
         this.userId = userId;
-        this.contactId = contactId;
     }
 
     public int getAppointmentId() {
@@ -76,6 +72,14 @@ public class Appointments
         this.location = location;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -84,11 +88,11 @@ public class Appointments
         this.startDate = startDate;
     }
 
-    public LocalDateTime getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
@@ -100,11 +104,11 @@ public class Appointments
         this.endDate = endDate;
     }
 
-    public LocalDateTime getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 

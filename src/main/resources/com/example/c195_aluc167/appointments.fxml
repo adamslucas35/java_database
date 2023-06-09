@@ -5,30 +5,38 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="500.0" maxWidth="1550.0" minHeight="500.0" minWidth="1200.0" prefHeight="500.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.c195_aluc167.controllers.AppointmentsController">
-    <Label fx:id="ap_title" layoutX="59.0" layoutY="21.0" prefHeight="23.0" prefWidth="125.0" text="%appointment" textFill="WHITE">
+    <Label fx:id="ap_title" layoutX="59.0" layoutY="21.0" prefHeight="23.0" prefWidth="125.0" text="%appointments" textFill="WHITE">
         <font>
             <Font name="Calisto MT" size="18.0" />
         </font>
     </Label>
 
     <Button fx:id="ap_createAppointment" alignment="CENTER" layoutX="1072.0" layoutY="72.0" mnemonicParsing="false" onAction="#ap_createAppointmentClicked" prefHeight="42.0" prefWidth="105.0" text="%createAppointment" textAlignment="CENTER" wrapText="true" />
-    <Button fx:id="ap_updateAppointment" alignment="CENTER" layoutX="1072.0" layoutY="172.0" mnemonicParsing="false" onAction="#ap_modifyAppointmentClicked" prefHeight="42.0" prefWidth="105.0" text="%updateAppointment" textAlignment="CENTER" wrapText="true" />
+    <Button fx:id="ap_updateAppointment" alignment="CENTER" layoutX="1072.0" layoutY="172.0" mnemonicParsing="false" onAction="#ap_modifyAppointmentClicked" prefHeight="42.0" prefWidth="105.0" text="%modifyAppointment" textAlignment="CENTER" wrapText="true" />
     <Button fx:id="ap_removeAppointment" alignment="CENTER" layoutX="1072.0" layoutY="272.0" mnemonicParsing="false" onAction="#ap_removeAppointmentClicked" prefHeight="42.0" prefWidth="105.0" text="%removeAppointment" textAlignment="CENTER" wrapText="true" />
     <Button layoutX="1072.0" layoutY="396.0" onAction="#return_to_load" prefHeight="25.0" prefWidth="78.0" text="%goBack" />
     <Pane fx:id="ap_tableView" layoutX="22.0" layoutY="64.0" prefHeight="392.0" prefWidth="803.0" />
-    <Label fx:id="radioLabel" layoutX="828.0" layoutY="20.0" prefHeight="23" prefWidth="75" text="%radioLabel" textFill="WHITE">
+    <Label fx:id="radioLabel" layoutX="562.0" layoutY="11.0" prefHeight="23" prefWidth="75" text="%radioLabel" textFill="WHITE">
         <font>
             <Font name="Calisto MT" size="14.0" />
         </font>
     </Label>
-    <RadioButton fx:id="ap_radioButtonMonth" layoutX="903.0" layoutY="20.0" prefHeight="25.0" prefWidth="186.0" text="%radioLabel_Month" textFill="WHITE">
+    <RadioButton fx:id="ap_radioButtonMonth" layoutX="1000.0" layoutY="10.0" onAction="#radioMonthClicked" prefHeight="25.0" prefWidth="186.0" text="%radioLabel_Month" textFill="WHITE">
         <font>
         <Font name="Calisto MT" size="14.0" />
         </font>
+      <toggleGroup>
+         <ToggleGroup fx:id="sorter" />
+      </toggleGroup>
     </RadioButton>
-    <RadioButton fx:id="ap_radioButtonWeek" layoutX="1003.0" layoutY="20.0" prefHeight="25.0" prefWidth="145.0" text="%radioLabel_Week" textFill="WHITE">
+    <RadioButton fx:id="ap_radioButtonWeek" layoutX="855.0" layoutY="10.0" onAction="#radioWeekClicked" prefHeight="25.0" prefWidth="136.0" text="%radioLabel_Week" textFill="WHITE" toggleGroup="$sorter">
         <font>
         <Font size="14.0" />
         </font>
     </RadioButton>
+   <RadioButton fx:id="ap_radioButtonAll" layoutX="703.0" layoutY="10.0" onAction="#radioAllClicked" prefHeight="25.0" prefWidth="145.0" selected="true" text="%radioLabel_All" textFill="WHITE" toggleGroup="$sorter">
+      <font>
+         <Font name="Calisto MT" size="14.0" />
+      </font>
+   </RadioButton>
 </AnchorPane>

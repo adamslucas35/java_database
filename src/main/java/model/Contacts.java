@@ -13,6 +13,11 @@ public class Contacts
         this.email = email;
     }
 
+    public Contacts(String contactName)
+    {
+        this.contactName = contactName;
+    }
+
     public int getContactId() {
         return contactId;
     }

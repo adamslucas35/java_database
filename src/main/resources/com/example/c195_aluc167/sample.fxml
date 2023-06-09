@@ -16,7 +16,7 @@
                 minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="%customer"
                 onAction="#ld_customer_clicked"/>
         <Button layoutX="208.0" layoutY="79.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="%appointment"
+                minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="%appointments"
                 onAction="#ld_appointment_clicked"/>
         <Button layoutX="107.0" layoutY="152.0" onAction="#log_out" prefHeight="25.0" prefWidth="115.0"
                 text="%ld_logout"/>
