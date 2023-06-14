@@ -18,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -105,17 +106,39 @@ public class ModifyAppointmentController implements Initializable {
         }
 
         String appointmentStartTime = ma_appointmentStart_tf.getText();
-        try {
-            LocalTime.parse(appointmentStartTime, DateTimeFormatter.ofPattern("H:mm"));
-        } catch (DateTimeParseException e)
+        boolean startHasLeadingZero = appointmentStartTime.charAt(0) == '0';
+        int startFirstChar = Integer.parseInt(String.valueOf(appointmentStartTime.charAt(0)));
+        int startSecondChar = appointmentStartTime.charAt(1);
+
+        if (startHasLeadingZero || (startFirstChar > 0 && startSecondChar != 58)) {
+            try {
+                LocalTime.parse(appointmentStartTime, DateTimeFormatter.ofPattern("HH:mm"));
+            } catch (DateTimeParseException e)
+            {
+                String formatError = rb.getString("formatErrorTime");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(formatError);
+                alert.showAndWait();
+            }
+        }
+        else
         {
-            String formatError = rb.getString("formatErrorTime");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText(formatError);
-            alert.showAndWait();
+            try {
+                appointmentStartTime = "0" + appointmentStartTime;
+                LocalTime.parse(appointmentStartTime, DateTimeFormatter.ofPattern("HH:mm"));
+            } catch (DateTimeParseException e)
+            {
+                String formatError = rb.getString("formatErrorTime");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(formatError);
+                alert.showAndWait();
+            }
         }
 
+        /** This converts the entered string from the local time to UTC time to be stored correctly in the database. */
         String appointmentStart = appointmentStartDate + " " + appointmentStartTime;
+        LocalDateTime localAppointmentStart = LocalDateTime.parse(appointmentStart, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        appointmentStart = String.valueOf(JDBC.convertLocaltoUTC(localAppointmentStart));
         modify.setString(5, appointmentStart);
 
 
@@ -138,16 +161,36 @@ public class ModifyAppointmentController implements Initializable {
 
 
         String appointmentEndTime = ma_appointmentEnd_tf.getText();
-        try {
-            LocalTime.parse(appointmentEndTime, DateTimeFormatter.ofPattern("H:mm"));
-        } catch (DateTimeParseException e)
-        {
-            String formatError = rb.getString("formatErrorTime");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText(formatError);
-            alert.showAndWait();
+
+        boolean endHasLeadingZero = appointmentEndTime.charAt(0) == '0';
+        int endFirstChar = Integer.parseInt(String.valueOf(appointmentEndTime.charAt(0)));
+        int endSecondChar = appointmentEndTime.charAt(1);
+
+        if (endHasLeadingZero || (endFirstChar > 0 && endSecondChar != 58)) {
+            try {
+                LocalTime.parse(appointmentEndTime, DateTimeFormatter.ofPattern("HH:mm"));
+            } catch (DateTimeParseException e) {
+                String formatError = rb.getString("formatErrorTime");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(formatError);
+                alert.showAndWait();
+            }
+        } else {
+            try {
+                appointmentEndTime = "0" + appointmentEndTime;
+                LocalTime.parse(appointmentEndTime, DateTimeFormatter.ofPattern("HH:mm"));
+            } catch (DateTimeParseException e) {
+                String formatError = rb.getString("formatErrorTime");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(formatError);
+                alert.showAndWait();
+            }
         }
+
         String appointmentEnd = appointmentEndDate + " " + appointmentEndTime;
+        LocalDateTime localAppointmentEnd = LocalDateTime.parse(appointmentEnd, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        appointmentEnd = String.valueOf(JDBC.convertLocaltoUTC(localAppointmentEnd));
+
         modify.setString(6, appointmentEnd);
         modify.setString(7, ma_appointmentCustomerID_tf.getText());
         modify.setString(8, ma_appointmentUserID_tf.getText());

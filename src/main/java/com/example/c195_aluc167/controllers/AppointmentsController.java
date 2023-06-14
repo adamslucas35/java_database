@@ -22,6 +22,7 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -59,6 +60,8 @@ public class AppointmentsController implements Initializable {
     private ObservableList<Object> appointmentData;
 
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -68,9 +71,6 @@ public class AppointmentsController implements Initializable {
 
     public void createAppointmentTable(ResultSet rs) throws SQLException
     {
-
-        int startIndex = 6;
-        int endIndex = 7;
 
         appointmentTableView = new TableView<>();
         int insert = appointmentTableView.getColumns().size() - 6;
@@ -89,21 +89,53 @@ public class AppointmentsController implements Initializable {
                 appointmentTableView.getColumns().add((joinedDataColumn));
             }
         }
-        TableColumn<ObservableList<String>, ?> startTimeColumn = appointmentTableView.getColumns().get(startIndex);
-        TableColumn<ObservableList<String>, ?> endTimeColumn = appointmentTableView.getColumns().get(endIndex);
-        TableColumn<ObservableList<String>, ?> userIDColumn = appointmentTableView.getColumns().get(9);
-        TableColumn<ObservableList<String>, ?> customerIDColum = appointmentTableView.getColumns().get(8);
 
-        startTimeColumn.setPrefWidth(130);
-        endTimeColumn.setPrefWidth(130);
-        customerIDColum.setPrefWidth(80);
+        TableColumn<ObservableList<String>, ?> appointmentIDColumn = appointmentTableView.getColumns().get(0);
+        TableColumn<ObservableList<String>, ?> titleColumn = appointmentTableView.getColumns().get(1);
+        TableColumn<ObservableList<String>, ?> descriptionColumn = appointmentTableView.getColumns().get(2);
+        TableColumn<ObservableList<String>, ?> locationColumn = appointmentTableView.getColumns().get(3);
+        TableColumn<ObservableList<String>, ?> typeColumn = appointmentTableView.getColumns().get(4);
+        TableColumn<ObservableList<String>, ?> contactNameColumn = appointmentTableView.getColumns().get(5);
+        TableColumn<ObservableList<String>, ?> startColumn = appointmentTableView.getColumns().get(6);
+        TableColumn<ObservableList<String>, ?> endColumn = appointmentTableView.getColumns().get(7);
+        TableColumn<ObservableList<String>, ?> customerIDColumn = appointmentTableView.getColumns().get(8);
+        TableColumn<ObservableList<String>, ?> userIDColumn = appointmentTableView.getColumns().get(9);
+
+        String appointment = rb.getString("appointmentID");
+        String title = rb.getString("appointmentTitle");
+        String description = rb.getString("appointmentDescription");
+        String location = rb.getString("appointmentLocation");
+        String type = rb.getString("appointmentType");
+        String contactName = rb.getString("appointmentContact");
+        String start = rb.getString("appointmentStart");
+        String end = rb.getString("appointmentEnd");
+        String customerId = rb.getString("appointmentCustomerID");
+        String userId = rb.getString("appointmentUserID");
+
+        appointmentIDColumn.setText(appointment);
+        titleColumn.setText(title);
+        descriptionColumn.setText(description);
+        locationColumn.setText(location);
+        typeColumn.setText(type);
+        contactNameColumn.setText(contactName);
+        startColumn.setText(start);
+        endColumn.setText(end);
+        customerIDColumn.setText(customerId);
+        userIDColumn.setText(userId);
+
+        startColumn.setPrefWidth(130);
+        endColumn.setPrefWidth(130);
+        customerIDColumn.setPrefWidth(80);
         userIDColumn.setPrefWidth(70);
+
+
     }
 
     public void loadAppointmentTable(String query)
     {
          appointmentData = FXCollections.observableArrayList();
-        try {
+        try
+        {
             String q_selectAllCustomers = query;
             PreparedStatement loadCustomer = JDBC.connection.prepareStatement(q_selectAllCustomers);
             ResultSet rs = loadCustomer.executeQuery();
@@ -111,10 +143,21 @@ public class AppointmentsController implements Initializable {
             // Create table columns based on SQL columns
             createAppointmentTable(rs);
             //populate with data
-            while (rs.next()) {
+            while (rs.next())
+            {
                 ObservableList<String> rowData = FXCollections.observableArrayList();
-                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                    rowData.add(rs.getString(i));
+                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++)
+                {
+                    if (i == 7 || i == 8)
+                    {
+                        LocalDateTime utcDateTime = LocalDateTime.parse(rs.getString(i), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                        LocalDateTime localDateTime = JDBC.convertUTCtoLocal(utcDateTime);
+                        rowData.add(localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                    }
+                    else
+                    {
+                        rowData.add(rs.getString(i));
+                    }
                 }
                 appointmentTableView.getItems().add(rowData);
             }
@@ -122,7 +165,9 @@ public class AppointmentsController implements Initializable {
             ap_tableView.getChildren().add(appointmentTableView);
 
 
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             throw new RuntimeException(e);
         }
 
@@ -250,7 +295,6 @@ public class AppointmentsController implements Initializable {
     public void radioWeekClicked(ActionEvent actionEvent)
     {
         LocalDate today = LocalDate.now();
-
         LocalDate firstDayOfWeek = today.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
         LocalDate lastDayOfWeek = today.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
         String weekSort = "SELECT a.Appointment_ID, a.Title, a.Description, a.Location, c.Contact_Name, a.Type, a.Start, a.End, a.Customer_ID, a.User_ID FROM appointments a INNER JOIN contacts c ON c.Contact_ID = a.Contact_ID WHERE Start BETWEEN '"
@@ -272,3 +316,5 @@ public class AppointmentsController implements Initializable {
         loadAppointmentTable(queryLoadAppointments);
     }
 }
+
+

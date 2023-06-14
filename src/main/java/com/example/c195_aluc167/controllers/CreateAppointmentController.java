@@ -17,9 +17,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -68,30 +70,75 @@ public class CreateAppointmentController implements Initializable {
         String appointmentDescription = ap_appointmentDescription_tf.getText();
         String appointmentLocation = ap_appointmentLocation_tf.getText();
         String contactID = null;
+
         PreparedStatement contactCheck = connection.prepareStatement("SELECT Contact_ID FROM contacts WHERE Contact_Name = ?");
         contactCheck.setString(1, (String) ap_appointmentContact_cb.getValue());
         ResultSet resultSet = contactCheck.executeQuery();
-        while(resultSet.next())
-        {
+        while (resultSet.next()) {
             contactID = resultSet.getString("Contact_ID");
         }
+
         String appointmentType = ap_appointmentType_tf.getText();
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String appointmentStartDate = "";
         String appointmentEndDate = "";
+
 
         LocalDate startDate = ap_startDate.getValue();
         if (startDate != null) {
             appointmentStartDate = startDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         } else {
             String startDateText = ap_startDate.getEditor().getText();
-            if (!startDateText.isEmpty()) {
-                appointmentStartDate = startDateText;
+            if(!startDateText.isEmpty()){
+                try {
+                    appointmentStartDate = LocalDate.parse(startDateText).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                } catch (Exception e)
+                {
+                    String formatError = rb.getString("formatErrorDate");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(formatError);
+                    alert.showAndWait();
+                }
             }
-            DateTimeFormatter inputDate = DateTimeFormatter.ofPattern("M/dd/yyyy");
-            DateTimeFormatter outputDate = DateTimeFormatter.ofPattern("yyyy/M/dd");
-            LocalDate newDate = LocalDate.parse(appointmentStartDate, inputDate);
-            appointmentStartDate = newDate.format(outputDate);
         }
+
+
+        String appointmentStartTime = ap_appointmentStart_tf.getText();
+        boolean startHasLeadingZero = appointmentStartTime.charAt(0) == '0';
+        int startFirstChar = Integer.parseInt(String.valueOf(appointmentStartTime.charAt(0)));
+        int startSecondChar = appointmentStartTime.charAt(1);
+
+        if (startHasLeadingZero || (startFirstChar > 0 && startSecondChar != 58)) {
+            try {
+                LocalTime.parse(appointmentStartTime, DateTimeFormatter.ofPattern("HH:mm"));
+            } catch (DateTimeParseException e)
+            {
+                String formatError = rb.getString("formatErrorTime");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(formatError);
+                alert.showAndWait();
+            }
+        }
+        else
+        {
+            try {
+                appointmentStartTime = "0" + appointmentStartTime;
+                LocalTime.parse(appointmentStartTime, DateTimeFormatter.ofPattern("HH:mm"));
+            } catch (DateTimeParseException e)
+            {
+                String formatError = rb.getString("formatErrorTime");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(formatError);
+                alert.showAndWait();
+            }
+        }
+
+
+        String appointmentStart = appointmentStartDate + " " + appointmentStartTime;
+        LocalDateTime localAppointmentStart = LocalDateTime.parse(appointmentStart, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        appointmentStart = String.valueOf(JDBC.convertLocaltoUTC(localAppointmentStart));
+
 
         LocalDate endDate = ap_endDate.getValue();
         if (endDate != null) {
@@ -99,40 +146,50 @@ public class CreateAppointmentController implements Initializable {
         } else {
             String endDateText = ap_endDate.getEditor().getText();
             if (!endDateText.isEmpty()) {
-                appointmentEndDate = endDateText;
+                try {
+                    appointmentEndDate = LocalDate.parse(endDateText).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                } catch (Exception e) {
+                    String formatError = rb.getString("formatErrorTime");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(formatError);
+                    alert.showAndWait();
+                }
             }
-            DateTimeFormatter inputDate = DateTimeFormatter.ofPattern("M/dd/yyyy");
-            DateTimeFormatter outputDate = DateTimeFormatter.ofPattern("yyyy/M/dd");
-            LocalDate newDate = LocalDate.parse(appointmentEndDate, inputDate);
-            appointmentEndDate = newDate.format(outputDate);
-        }
-        String appointmentStartTime = ap_appointmentStart_tf.getText();
-        try {
-            LocalTime.parse(appointmentStartTime, DateTimeFormatter.ofPattern("H:mm"));
-        } catch (DateTimeParseException e)
-        {
-            String formatError = rb.getString("formatErrorTime");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText(formatError);
-            alert.showAndWait();
         }
 
-        String appointmentStart = appointmentStartDate + " " + appointmentStartTime;
         String appointmentEndTime = ap_appointmentEnd_tf.getText();
-        try {
-            LocalTime.parse(appointmentEndTime, DateTimeFormatter.ofPattern("H:mm"));
-        } catch (DateTimeParseException e)
-        {
-            String formatError = rb.getString("formatErrorTime");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText(formatError);
-            alert.showAndWait();
+
+        boolean endHasLeadingZero = appointmentEndTime.charAt(0) == '0';
+        int endFirstChar = Integer.parseInt(String.valueOf(appointmentEndTime.charAt(0)));
+        int endSecondChar = appointmentEndTime.charAt(1);
+
+        if (endHasLeadingZero || (endFirstChar > 0 && endSecondChar != 58)) {
+            try {
+                LocalTime.parse(appointmentEndTime, DateTimeFormatter.ofPattern("HH:mm"));
+            } catch (DateTimeParseException e) {
+                String formatError = rb.getString("formatErrorTime");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(formatError);
+                alert.showAndWait();
+            }
+        } else {
+            try {
+                appointmentEndTime = "0" + appointmentEndTime;
+                LocalTime.parse(appointmentEndTime, DateTimeFormatter.ofPattern("HH:mm"));
+            } catch (DateTimeParseException e) {
+                String formatError = rb.getString("formatErrorTime");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(formatError);
+                alert.showAndWait();
+            }
         }
+
         String appointmentEnd = appointmentEndDate + " " + appointmentEndTime;
+        LocalDateTime localAppointmentEnd = LocalDateTime.parse(appointmentEnd, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        appointmentEnd = String.valueOf(JDBC.convertLocaltoUTC(localAppointmentEnd));
+
         String appointmentCustomerID = ap_appointmentCustomerID_tf.getText();
         String appointmentUserID = ap_appointmentUserID_tf.getText();
-
-
 
 
         PreparedStatement createAppointment = connection.prepareStatement("INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -143,12 +200,12 @@ public class CreateAppointmentController implements Initializable {
         createAppointment.setString(5, appointmentStart);
         createAppointment.setString(6, appointmentEnd);
         createAppointment.setString(7, appointmentCustomerID);
-        createAppointment.setString(8 ,appointmentUserID);
+        createAppointment.setString(8, appointmentUserID);
         createAppointment.setString(9, contactID);
         createAppointment.executeUpdate();
 
-        MainApplication.loadScene("appointments.fxml", 1200, 500, "", actionEvent);
 
+        MainApplication.loadScene("appointments.fxml", 1200, 500, "", actionEvent);
 
     }
 

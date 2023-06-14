@@ -12,19 +12,31 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.TimeZone;
+
 
 public class MainApplication extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
         ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
+        String welcome = rb.getString("welcome");
+        String login = rb.getString("lm_loginTitle");
+
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("loginMain.fxml"), rb);
 
         Scene scene = new Scene(fxmlLoader.load(), 440, 440);
-        stage.setTitle("Welcome - Login!");
+        stage.setX(100);
+        stage.setY(100);
+        stage.setTitle(welcome + "-" + login);
         stage.setScene(scene);
         stage.show();
     }
@@ -42,24 +54,15 @@ public class MainApplication extends Application {
         Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle(title);
-        stage.setX(200);
-        stage.setY(200);
+        stage.setX(100);
+        stage.setY(100);
         stage.show();
-        if((Locale.getDefault().getLanguage().equals("de")) || (Locale.getDefault().getLanguage().equals("es")) || (Locale.getDefault().getLanguage().equals("fr")))
-        {
-            System.out.println(rb.getString("hello") + " " + rb.getString("world"));
-        }
     }
 
+
+
+
     public static void main(String[] args) {
-
-
-        ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
-
-        if((Locale.getDefault().getLanguage().equals("de")) || (Locale.getDefault().getLanguage().equals("es")) || (Locale.getDefault().getLanguage().equals("fr")))
-        {
-            System.out.println(rb.getString("hello") + " " + rb.getString("world"));
-        }
 
         JDBC.openConnection();
         launch();

@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -26,7 +27,7 @@ public class Appointments
     private int userId;
     private int contactId;
 
-    public Appointments(int appointmentId, String title, String description, String location, String type, LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime, int customerId, int userId) {
+    public Appointments(int appointmentId, String title, String description, String location, String type, LocalDate startDate, LocalTime    startTime, LocalDate endDate, LocalTime endTime, int customerId, int userId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;

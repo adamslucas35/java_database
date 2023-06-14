@@ -5,18 +5,18 @@ import connector.JDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 public class LoginMainController implements Initializable {
 
@@ -25,7 +25,7 @@ public class LoginMainController implements Initializable {
     @FXML private Label lm_password_lbl;
     @FXML private Label lm_location;
     @FXML private TextField lm_username_tf;
-    @FXML private TextField lm_password_tf;
+    @FXML private PasswordField lm_password_pf;
 
     /**
      * Initializes loginMain.fxml
@@ -50,18 +50,46 @@ public class LoginMainController implements Initializable {
         {
             System.out.println(rb.getString("language"));
         }
+
+        LocalDate parisDate = LocalDate.of(2023, 6, 12);
+        LocalTime parisTime = LocalTime.of(22, 39);
+        LocalDate eastDate = LocalDate.now(ZoneId.of("US/Eastern"));
+        LocalTime eastTime = LocalTime.parse(LocalTime.now(ZoneId.of("US/Eastern")).format(DateTimeFormatter.ofPattern("HH:mm")));
+        System.out.println(eastDate + " EST");
+        System.out.println(eastTime + " EST");
+        ZoneId parisZoneId = ZoneId.of("Europe/Paris");
+        ZonedDateTime parisZDT = ZonedDateTime.of(parisDate, parisTime, parisZoneId);
+        ZoneId localZoneId = ZoneId.of(TimeZone.getDefault().getID());
+
+        Instant paristToGMTInstant = parisZDT.toInstant();
+        ZonedDateTime parisToLocalZDT = parisZDT.withZoneSameInstant(localZoneId);
+        ZonedDateTime gmtToLocalZDT = paristToGMTInstant.atZone(localZoneId);
+
+        System.out.println("LOCAL: " + ZonedDateTime.now());
+        System.out.println("PARIS: " + parisZDT);
+        System.out.println("PARIS->UTC: " + paristToGMTInstant);
+        System.out.println("GMT->LOCAL: " + gmtToLocalZDT);
+
+        System.out.println("GMT->LOCALDATE: " + gmtToLocalZDT.toLocalDate());
+        System.out.println("GMT->LOCALTIME: " + gmtToLocalZDT.toLocalTime());
+
+        String date = String.valueOf(gmtToLocalZDT.toLocalDate());
+        String time = String.valueOf(gmtToLocalZDT.toLocalTime());
+        String dateTime = date + " " + time;
+        System.out.println(dateTime);
+
     }
 
     public void lm_login_btn_clicked(ActionEvent actionEvent) throws IOException, SQLException {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Lang", Locale.getDefault());
-        if (lm_username_tf.getText().isEmpty() || lm_password_tf.getText().isEmpty())
+        if (lm_username_tf.getText().isEmpty() || lm_password_pf.getText().isEmpty())
         {
             String errorFields = resourceBundle.getString("errorFields");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(errorFields);
             alert.showAndWait();
         }
-        else if (!(lm_username_tf.getText().isEmpty() && lm_password_tf.getText().isEmpty()))
+        else if (!(lm_username_tf.getText().isEmpty() && lm_password_pf.getText().isEmpty()))
         {
 
             PreparedStatement checkCredentials = null;
@@ -82,7 +110,7 @@ public class LoginMainController implements Initializable {
                 while(resultSet.next())
                 {
                     String grabPassword = resultSet.getString("Password");
-                    if(grabPassword.equals(lm_password_tf.getText()))
+                    if(grabPassword.equals(lm_password_pf.getText()))
                     {
                         MainApplication.loadScene("sample.fxml", 370, 261, "", actionEvent);
                         // Load sample page
