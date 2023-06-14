@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -39,6 +40,8 @@ public class MainApplication extends Application {
         stage.setTitle(welcome + "-" + login);
         stage.setScene(scene);
         stage.show();
+
+
     }
 
     public static void return_to_load(ActionEvent actionEvent) throws IOException {

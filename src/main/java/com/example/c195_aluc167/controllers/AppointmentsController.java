@@ -66,6 +66,9 @@ public class AppointmentsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         loadAppointmentTable(queryLoadAppointments);
+        //check for appointment within 15 minutes
+
+
 
     }
 

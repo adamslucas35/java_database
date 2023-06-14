@@ -79,6 +79,13 @@ public class CustomersController implements Initializable  {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        PreparedStatement auto = null;
+        try {
+            auto = JDBC.connection.prepareStatement("ALTER TABLE customers AUTO_INCREMENT = 1");
+            auto.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         loadCustomerTable(queryLoadData);
         System.out.println("Customer page has been initialized!");
     }

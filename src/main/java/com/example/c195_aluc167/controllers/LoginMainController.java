@@ -9,11 +9,14 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjuster;
+import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
@@ -45,38 +48,78 @@ public class LoginMainController implements Initializable {
         lm_location.setText(formattedLocation);
 
 
-        //temp to confirm language settings of computer locale
-        if((Locale.getDefault().getLanguage().equals("de")) || (Locale.getDefault().getLanguage().equals("es")) || (Locale.getDefault().getLanguage().equals("fr")))
-        {
+
             System.out.println(rb.getString("language"));
+
+
+        LocalDate easternTime = LocalDate.of(2023, 6, 12);
+        LocalTime easternDate = LocalTime.of(22, 39);
+
+        String endTime = "23:00";
+        String endDate = "2023-06-15";
+
+        String appointmentEnd = endDate + " " + endTime;
+
+        LocalDateTime localAppointmentEnd = LocalDateTime.parse(appointmentEnd, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String dateTime = localAppointmentEnd.format(dateTimeFormatter);
+        System.out.println(dateTime + " LOCAL?");
+
+       String east =  JDBC.convertLocaltoEastern(localAppointmentEnd).format(dateTimeFormatter);
+        System.out.println(east + " EAST!");
+
+
+
+        PreparedStatement statement = null;
+        try {
+            statement = JDBC.connection.prepareStatement("SELECT Start, End from Appointments");
+            ResultSet rs = statement.executeQuery();
+            while(rs.next())
+            {
+                System.out.print(rs.getString("Start") + " | " + rs.getString("End") + "\n");
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
-        LocalDate parisDate = LocalDate.of(2023, 6, 12);
-        LocalTime parisTime = LocalTime.of(22, 39);
-        LocalDate eastDate = LocalDate.now(ZoneId.of("US/Eastern"));
-        LocalTime eastTime = LocalTime.parse(LocalTime.now(ZoneId.of("US/Eastern")).format(DateTimeFormatter.ofPattern("HH:mm")));
-        System.out.println(eastDate + " EST");
-        System.out.println(eastTime + " EST");
-        ZoneId parisZoneId = ZoneId.of("Europe/Paris");
-        ZonedDateTime parisZDT = ZonedDateTime.of(parisDate, parisTime, parisZoneId);
-        ZoneId localZoneId = ZoneId.of(TimeZone.getDefault().getID());
 
-        Instant paristToGMTInstant = parisZDT.toInstant();
-        ZonedDateTime parisToLocalZDT = parisZDT.withZoneSameInstant(localZoneId);
-        ZonedDateTime gmtToLocalZDT = paristToGMTInstant.atZone(localZoneId);
 
-        System.out.println("LOCAL: " + ZonedDateTime.now());
-        System.out.println("PARIS: " + parisZDT);
-        System.out.println("PARIS->UTC: " + paristToGMTInstant);
-        System.out.println("GMT->LOCAL: " + gmtToLocalZDT);
 
-        System.out.println("GMT->LOCALDATE: " + gmtToLocalZDT.toLocalDate());
-        System.out.println("GMT->LOCALTIME: " + gmtToLocalZDT.toLocalTime());
 
-        String date = String.valueOf(gmtToLocalZDT.toLocalDate());
-        String time = String.valueOf(gmtToLocalZDT.toLocalTime());
-        String dateTime = date + " " + time;
-        System.out.println(dateTime);
+
+
+
+
+
+
+
+
+
+//        LocalDate eastDate = LocalDate.now(ZoneId.of("US/Eastern"));
+//        LocalTime eastTime = LocalTime.parse(LocalTime.now(ZoneId.of("US/Eastern")).format(DateTimeFormatter.ofPattern("HH:mm")));
+//        System.out.println(eastDate + " EST");
+//        System.out.println(eastTime + " EST");
+//        ZoneId parisZoneId = ZoneId.of("Europe/Paris");
+//        ZonedDateTime parisZDT = ZonedDateTime.of(easternTime, easternDate, parisZoneId);
+//        ZoneId localZoneId = ZoneId.of(TimeZone.getDefault().getID());
+//
+//        Instant paristToGMTInstant = parisZDT.toInstant();
+//        ZonedDateTime parisToLocalZDT = parisZDT.withZoneSameInstant(localZoneId);
+//        ZonedDateTime gmtToLocalZDT = paristToGMTInstant.atZone(localZoneId);
+//
+//        System.out.println("LOCAL: " + ZonedDateTime.now());
+//        System.out.println("PARIS: " + parisZDT);
+//        System.out.println("PARIS->UTC: " + paristToGMTInstant);
+//        System.out.println("GMT->LOCAL: " + gmtToLocalZDT);
+//
+//        System.out.println("GMT->LOCALDATE: " + gmtToLocalZDT.toLocalDate());
+//        System.out.println("GMT->LOCALTIME: " + gmtToLocalZDT.toLocalTime());
+//
+//        String date = String.valueOf(gmtToLocalZDT.toLocalDate());
+//        String time = String.valueOf(gmtToLocalZDT.toLocalTime());
+//        String dateTime = date + " " + time;
+//        System.out.println(dateTime);
 
     }
 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="560.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.c195_aluc167.controllers.ReportsController">
+    <ComboBox fx:id="r_contactCombo" layoutX="30.0" layoutY="44.0" onAction="#r_contactComboReleased" prefHeight="25.0" prefWidth="161.0" promptText="%appointmentContact" />
+    <Button layoutX="718.0" layoutY="504.0" onAction="#return_to_load" prefHeight="25.0" prefWidth="78.0" text="%goBack" />
+    <Pane fx:id="r_contactTableView" layoutX="30.0" layoutY="81.0" prefHeight="120.0" prefWidth="500.0" />
+    <Label layoutX="37.0" layoutY="205.0" text="%customer" />
+    <Pane fx:id="r_custTableView" layoutX="30.0" layoutY="226.0" prefHeight="130.0" prefWidth="500.0" />
+    <Pane fx:id="r_timeTableView" layoutX="31.0" layoutY="398.0" prefHeight="130.0" prefWidth="320.0" />
+    <Label layoutX="37.0" layoutY="381.0" text="%duration" />
+    <Pane fx:id="r_avgTimeTableView" layoutX="435.0" layoutY="390.0" prefHeight="49.0" prefWidth="111.0" />
+</AnchorPane>

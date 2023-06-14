@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
@@ -84,7 +85,7 @@ public class CreateAppointmentController implements Initializable {
         String appointmentStartDate = "";
         String appointmentEndDate = "";
 
-
+//AppointmentStart
         LocalDate startDate = ap_startDate.getValue();
         if (startDate != null) {
             appointmentStartDate = startDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -103,12 +104,10 @@ public class CreateAppointmentController implements Initializable {
             }
         }
 
-
         String appointmentStartTime = ap_appointmentStart_tf.getText();
         boolean startHasLeadingZero = appointmentStartTime.charAt(0) == '0';
         int startFirstChar = Integer.parseInt(String.valueOf(appointmentStartTime.charAt(0)));
         int startSecondChar = appointmentStartTime.charAt(1);
-
         if (startHasLeadingZero || (startFirstChar > 0 && startSecondChar != 58)) {
             try {
                 LocalTime.parse(appointmentStartTime, DateTimeFormatter.ofPattern("HH:mm"));
@@ -133,13 +132,11 @@ public class CreateAppointmentController implements Initializable {
                 alert.showAndWait();
             }
         }
-
-
         String appointmentStart = appointmentStartDate + " " + appointmentStartTime;
         LocalDateTime localAppointmentStart = LocalDateTime.parse(appointmentStart, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         appointmentStart = String.valueOf(JDBC.convertLocaltoUTC(localAppointmentStart));
 
-
+        //AppointmentEnd
         LocalDate endDate = ap_endDate.getValue();
         if (endDate != null) {
             appointmentEndDate = endDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -156,13 +153,10 @@ public class CreateAppointmentController implements Initializable {
                 }
             }
         }
-
         String appointmentEndTime = ap_appointmentEnd_tf.getText();
-
         boolean endHasLeadingZero = appointmentEndTime.charAt(0) == '0';
         int endFirstChar = Integer.parseInt(String.valueOf(appointmentEndTime.charAt(0)));
         int endSecondChar = appointmentEndTime.charAt(1);
-
         if (endHasLeadingZero || (endFirstChar > 0 && endSecondChar != 58)) {
             try {
                 LocalTime.parse(appointmentEndTime, DateTimeFormatter.ofPattern("HH:mm"));
@@ -183,15 +177,23 @@ public class CreateAppointmentController implements Initializable {
                 alert.showAndWait();
             }
         }
-
         String appointmentEnd = appointmentEndDate + " " + appointmentEndTime;
         LocalDateTime localAppointmentEnd = LocalDateTime.parse(appointmentEnd, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         appointmentEnd = String.valueOf(JDBC.convertLocaltoUTC(localAppointmentEnd));
+
 
         String appointmentCustomerID = ap_appointmentCustomerID_tf.getText();
         String appointmentUserID = ap_appointmentUserID_tf.getText();
 
 
+        //Business Hours Check
+        if (checkBusinessHours(localAppointmentStart, localAppointmentEnd, rb)) return;
+
+        //Appointment Overlap
+        if (checkAppOverlap(appointmentStart, appointmentEnd, rb)) return;
+
+
+        //Execute Update
         PreparedStatement createAppointment = connection.prepareStatement("INSERT INTO appointments (Title, Description, Location, Type, Start, End, Customer_ID, User_ID, Contact_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         createAppointment.setString(1, appointmentTitle);
         createAppointment.setString(2, appointmentDescription);
@@ -208,6 +210,43 @@ public class CreateAppointmentController implements Initializable {
         MainApplication.loadScene("appointments.fxml", 1200, 500, "", actionEvent);
 
     }
+
+    static boolean checkAppOverlap(String appointmentStart, String appointmentEnd, ResourceBundle rb) throws SQLException {
+        PreparedStatement overlap = JDBC.connection.prepareStatement("SELECT * FROM appointments " +
+                "WHERE ((? < End AND ? > Start) OR (? <= Start AND ? >= End))");
+        overlap.setString(1, appointmentStart);
+        overlap.setString(2, appointmentEnd);
+        overlap.setString(3, appointmentStart);
+        overlap.setString(4, appointmentEnd);
+        ResultSet overlapResult = overlap.executeQuery();
+        if(overlapResult.next())
+        {
+            String exists = rb.getString("appointmentExists");
+            Alert existing = new Alert(Alert.AlertType.WARNING);
+            existing.setContentText(exists);
+            existing.showAndWait();
+            return true;
+        }
+        return false;
+    }
+
+    static boolean checkBusinessHours(LocalDateTime localAppointmentStart, LocalDateTime localAppointmentEnd, ResourceBundle rb) {
+        ZonedDateTime easternStart = JDBC.convertLocaltoEastern(localAppointmentStart);
+        ZonedDateTime easternEnd = JDBC.convertLocaltoEastern(localAppointmentEnd);
+        int easternStartTime = easternStart.getHour();
+        int easternEndTime = easternEnd.getHour();
+        if (!(easternStartTime >= 8 && easternEndTime < 22))
+        {
+            String closedHours = rb.getString("openedHours");
+            Alert closed = new Alert(Alert.AlertType.ERROR);
+            closed.setContentText(closedHours);
+            closed.showAndWait();
+            return true;
+        }
+        return false;
+    }
+
+
 
     public void goBack(ActionEvent actionEvent)
     {

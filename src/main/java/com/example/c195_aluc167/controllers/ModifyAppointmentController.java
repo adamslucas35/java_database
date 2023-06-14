@@ -20,6 +20,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
+import java.time.chrono.ChronoZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
@@ -78,12 +80,6 @@ public class ModifyAppointmentController implements Initializable {
     }
 
     public void onSubmit(ActionEvent actionEvent) throws IOException, SQLException {
-        PreparedStatement modify = JDBC.connection.prepareStatement("UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?");
-        modify.setString(1, ma_appointmentTitle_tf.getText());
-        modify.setString(2, ma_appointmentDescription_tf.getText());
-        modify.setString(3, ma_appointmentLocation_tf.getText());
-        modify.setString(4, ma_appointmentType_tf.getText());
-
         String appointmentStartDate = "";
         String appointmentEndDate = "";
 
@@ -100,6 +96,7 @@ public class ModifyAppointmentController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setContentText(formatError);
                     alert.showAndWait();
+                    return;
                 }
 
             }
@@ -119,6 +116,7 @@ public class ModifyAppointmentController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(formatError);
                 alert.showAndWait();
+                return;
             }
         }
         else
@@ -132,6 +130,7 @@ public class ModifyAppointmentController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(formatError);
                 alert.showAndWait();
+                return;
             }
         }
 
@@ -139,7 +138,6 @@ public class ModifyAppointmentController implements Initializable {
         String appointmentStart = appointmentStartDate + " " + appointmentStartTime;
         LocalDateTime localAppointmentStart = LocalDateTime.parse(appointmentStart, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         appointmentStart = String.valueOf(JDBC.convertLocaltoUTC(localAppointmentStart));
-        modify.setString(5, appointmentStart);
 
 
         LocalDate endDate = ma_endDate.getValue();
@@ -155,6 +153,7 @@ public class ModifyAppointmentController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setContentText(formatError);
                     alert.showAndWait();
+                    return;
                 }
             }
         }
@@ -174,6 +173,7 @@ public class ModifyAppointmentController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(formatError);
                 alert.showAndWait();
+                return;
             }
         } else {
             try {
@@ -184,6 +184,7 @@ public class ModifyAppointmentController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(formatError);
                 alert.showAndWait();
+                return;
             }
         }
 
@@ -191,6 +192,30 @@ public class ModifyAppointmentController implements Initializable {
         LocalDateTime localAppointmentEnd = LocalDateTime.parse(appointmentEnd, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         appointmentEnd = String.valueOf(JDBC.convertLocaltoUTC(localAppointmentEnd));
 
+        //Reversed hours
+        if(localAppointmentEnd.isBefore(localAppointmentStart))
+        {
+            String apOverlap = rb.getString("appointmentOverlap");
+            Alert overlap = new Alert(Alert.AlertType.WARNING);
+            overlap.setContentText(apOverlap);
+            overlap.showAndWait();
+            return;
+        }
+
+        //Business Hours Check
+        if (CreateAppointmentController.checkBusinessHours(localAppointmentStart, localAppointmentEnd, rb)) return;
+
+        //Appointment Overlap
+        if (checkAppOverlap(appointmentStart, appointmentEnd, ma_appointmentID_tf, rb))
+            return;
+
+
+        PreparedStatement modify = JDBC.connection.prepareStatement("UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?");
+        modify.setString(1, ma_appointmentTitle_tf.getText());
+        modify.setString(2, ma_appointmentDescription_tf.getText());
+        modify.setString(3, ma_appointmentLocation_tf.getText());
+        modify.setString(4, ma_appointmentType_tf.getText());
+        modify.setString(5, appointmentStart);
         modify.setString(6, appointmentEnd);
         modify.setString(7, ma_appointmentCustomerID_tf.getText());
         modify.setString(8, ma_appointmentUserID_tf.getText());
@@ -213,5 +238,28 @@ public class ModifyAppointmentController implements Initializable {
     {
         MainApplication.loadScene("appointments.fxml", 1200, 500, "", actionEvent);
 
+    }
+
+    static boolean checkAppOverlap(String appointmentStart, String appointmentEnd, TextField maAppointmentIDTf, ResourceBundle rb) throws SQLException {
+        PreparedStatement overlap = JDBC.connection.prepareStatement("SELECT * FROM appointments " +
+                "WHERE ((? < End AND ? > Start) OR (? <= Start AND ? >= End) OR (? >= Start AND ? <= End)) " +
+                "AND Appointment_ID != ?");
+        overlap.setString(1, appointmentStart);
+        overlap.setString(2, appointmentEnd);
+        overlap.setString(3, appointmentStart);
+        overlap.setString(4, appointmentEnd);
+        overlap.setString(5, appointmentStart);
+        overlap.setString(6, appointmentEnd);
+        overlap.setString(7, maAppointmentIDTf.getText());
+        ResultSet overlapResult = overlap.executeQuery();
+        if(overlapResult.next())
+        {
+            String exists = rb.getString("appointmentExists");
+            Alert existing = new Alert(Alert.AlertType.WARNING);
+            existing.setContentText(exists);
+            existing.showAndWait();
+            return true;
+        }
+        return false;
     }
 }

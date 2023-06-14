@@ -5,18 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="777d5853-159a-4a69-8c52-d1b3f89f12fe" name="Changes" comment="login gui connects to database and displays errors correctly">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/ReportsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/reports.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/AppointmentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/AppointmentsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/CreateAppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/CreateAppointmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/CustomersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/CustomersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/LoginMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/LoginMainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/ModifyAppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/ModifyAppointmentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/SampleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/SampleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/connector/JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/connector/JDBC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Appointments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Appointments.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Lang.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Lang_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Lang_fr.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/loginMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/loginMain.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/appointments.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/appointments.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/c195_aluc167/sample.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +141,8 @@
       <workItem from="1686341190681" duration="7363000" />
       <workItem from="1686403247654" duration="12554000" />
       <workItem from="1686613522210" duration="226000" />
-      <workItem from="1686613777186" duration="17731000" />
+      <workItem from="1686613777186" duration="22545000" />
+      <workItem from="1686763389884" duration="20258000" />
     </task>
     <task id="LOCAL-00001" summary="saving data, login screen gui created, TODO: connect database and create error gui">
       <created>1683891616216</created>
@@ -193,13 +197,22 @@
           <option name="timeStamp" value="6" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/ModifyAppointmentController.java</url>
-          <line>79</line>
-          <properties class="com.example.c195_aluc167.controllers.ModifyAppointmentController" method="onSubmit">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/AppointmentsController.java</url>
+          <line>65</line>
+          <properties class="com.example.c195_aluc167.controllers.AppointmentsController" method="initialize">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="15" />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/c195_aluc167/controllers/SampleController.java</url>
+          <line>51</line>
+          <properties class="com.example.c195_aluc167.controllers.SampleController" method="ld_appointment_clicked">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
