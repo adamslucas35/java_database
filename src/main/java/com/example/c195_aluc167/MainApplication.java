@@ -23,14 +23,20 @@ import java.util.Scanner;
 import java.util.TimeZone;
 
 
+/**
+ * Main Application.
+ */
 public class MainApplication extends Application {
-
+    /**
+     * Starts application scene
+     * @param stage new window
+     * @throws IOException input output error
+     */
     @Override
     public void start(Stage stage) throws IOException {
         ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
         String welcome = rb.getString("welcome");
         String login = rb.getString("lm_loginTitle");
-
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("loginMain.fxml"), rb);
 
@@ -41,13 +47,26 @@ public class MainApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-
     }
 
+    /**
+     * function to return to load.fxml
+     * @param actionEvent when button is clicked.
+     * @throws IOException input output error
+     */
     public static void return_to_load(ActionEvent actionEvent) throws IOException {
-        loadScene("sample.fxml", 370, 261, "", actionEvent);
+        loadScene("load.fxml", 370, 261, "", actionEvent);
     }
 
+    /**
+     * Function to load new window.
+     * @param fxmlFile file location
+     * @param width width
+     * @param height hieght
+     * @param title title
+     * @param actionEvent when button is clicked
+     * @throws IOException input output error
+     */
     public static void loadScene(String fxmlFile, double width, double height, String title, ActionEvent actionEvent) throws IOException {
         ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
 
@@ -63,8 +82,10 @@ public class MainApplication extends Application {
     }
 
 
-
-
+    /**
+     * Run application.
+     * @param args args
+     */
     public static void main(String[] args) {
 
         JDBC.openConnection();

@@ -20,6 +20,9 @@ import java.util.ResourceBundle;
 
 import static connector.JDBC.connection;
 
+/**
+ * Form to create customer.
+ */
 public class CreateCustomerController implements Initializable
 {
 
@@ -33,6 +36,11 @@ public class CreateCustomerController implements Initializable
 
     ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
 
+    /**
+     * Initializes createCustomer.fxml and sets Customer ID to disable.
+     * @param url url
+     * @param resourceBundle resourceBundles
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -42,7 +50,12 @@ public class CreateCustomerController implements Initializable
         cc_customerID_tf.setText(auto);
     }
 
-
+    /**
+     * When submit button is clicked, runs query to insert new customer into database.
+     * @param actionEvent when button is clicked.
+     * @throws SQLException throws error if sql query is not correct
+     * @throws IOException throws input output error
+     */
     public void onSubmit(ActionEvent actionEvent) throws SQLException, IOException {
         String divisionID = null;
         String ds = null, cs = null;
@@ -130,7 +143,10 @@ public class CreateCustomerController implements Initializable
         }
 
     }
-
+    /**
+     * Return to customers.fxml
+     * @param actionEvent when button is clicked.
+     */
     public void goBack(ActionEvent actionEvent)
     {
         try {
@@ -141,7 +157,10 @@ public class CreateCustomerController implements Initializable
     }
 
 
-
+    /**
+     * When combo box is clicked, runs query to display country names.
+     * @param mouseEvent when combo box is clicked.
+     */
     public void  onCountryComboOpened(MouseEvent mouseEvent) {
         try {
             PreparedStatement loadCountries = connection.prepareStatement("SELECT Country FROM countries");
@@ -156,7 +175,10 @@ public class CreateCustomerController implements Initializable
         }
     }
 
-
+    /**
+     * When combo box is clicked, runs query to display division names based on country selected.
+     * @param mouseEvent when combo box is clicked.
+     */
     public void onDivisionComboOpened(MouseEvent mouseEvent)
     {
         if(cc_countryCombo.getValue() == null)

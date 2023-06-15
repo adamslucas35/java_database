@@ -28,6 +28,9 @@ import java.util.ResourceBundle;
 
 import static connector.JDBC.connection;
 
+/**
+ * Form to create appointment.
+ */
 public class CreateAppointmentController implements Initializable {
 
     public TextField ma_appointmentID_tf;
@@ -44,6 +47,11 @@ public class CreateAppointmentController implements Initializable {
     @FXML private DatePicker ap_startDate;
     @FXML private DatePicker ap_endDate;
     ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
+    /**
+     * Initializes createAppointment.fxml and sets Appointment ID to disable.
+     * @param url url
+     * @param resourceBundle resourceBundles
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -53,6 +61,11 @@ public class CreateAppointmentController implements Initializable {
         ap_appointmentID_tf.setText(auto);
     }
 
+    /**
+     * When combo box is clicked, runs query to display contact names.
+     * @param mouseEvent when combo box is clicked
+     * @throws SQLException throws error if sql query is not correct
+     */
     public void appointmentContactClicked(MouseEvent mouseEvent) throws SQLException
     {
         PreparedStatement getData = JDBC.connection.prepareStatement("SELECT Contact_Name FROM contacts");
@@ -64,6 +77,12 @@ public class CreateAppointmentController implements Initializable {
         }
     }
 
+    /**
+     * When submit button is clicked, runs query to insert new appointment into database.
+     * @param actionEvent when button is clicked.
+     * @throws SQLException throws error if sql query is not correct
+     * @throws IOException throws input output error
+     */
     public void onSubmit(ActionEvent actionEvent) throws SQLException, IOException
     {
 
@@ -211,6 +230,14 @@ public class CreateAppointmentController implements Initializable {
 
     }
 
+    /**
+     * Check to see if appointment starts before it ends.
+     * @param appointmentStart appointmentStart dateTime
+     * @param appointmentEnd appointmentEnd dateTiem
+     * @param rb ResourceBundle Lang
+     * @return to end function
+     * @throws SQLException throws error if sql query is not correct
+     */
     static boolean checkAppOverlap(String appointmentStart, String appointmentEnd, ResourceBundle rb) throws SQLException {
         PreparedStatement overlap = JDBC.connection.prepareStatement("SELECT * FROM appointments " +
                 "WHERE ((? < End AND ? > Start) OR (? <= Start AND ? >= End))");
@@ -230,6 +257,13 @@ public class CreateAppointmentController implements Initializable {
         return false;
     }
 
+    /**
+     * Checks to make sure appointments are within EST business hours
+     * @param localAppointmentStart localDateTime
+     * @param localAppointmentEnd localDateTime
+     * @param rb ResourceBundle Lang
+     * @return to end function if error
+     */
     static boolean checkBusinessHours(LocalDateTime localAppointmentStart, LocalDateTime localAppointmentEnd, ResourceBundle rb) {
         ZonedDateTime easternStart = JDBC.convertLocaltoEastern(localAppointmentStart);
         ZonedDateTime easternEnd = JDBC.convertLocaltoEastern(localAppointmentEnd);
@@ -247,7 +281,10 @@ public class CreateAppointmentController implements Initializable {
     }
 
 
-
+    /**
+     * Return to appointments.fxml
+     * @param actionEvent when button is clicked.
+     */
     public void goBack(ActionEvent actionEvent)
     {
         try {

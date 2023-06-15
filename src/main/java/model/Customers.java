@@ -3,6 +3,9 @@ package model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Customers class.
+ */
 public class Customers
 {
     private int customerId;
@@ -19,6 +22,22 @@ public class Customers
     private String customerDivision;
     private String customerCountry;
 
+    /**
+     * Constructor.
+     * @param customerId ID
+     * @param customerName name
+     * @param customerAddress address
+     * @param customerPostalCode postal
+     * @param customerPhone phone
+     * @param customerCreateDate date
+     * @param customerCreateTime time
+     * @param customerCreatedBy by
+     * @param customerLastUpdateDate updatedate
+     * @param customerLastUpdateTime updatetime
+     * @param customerLastUpdatedBy updateby
+     * @param customerDivision division
+     * @param customerCountry country
+     */
     public Customers(int customerId, String customerName, String customerAddress, String customerPostalCode, String customerPhone, LocalDate customerCreateDate, LocalDateTime customerCreateTime, String customerCreatedBy, LocalDate customerLastUpdateDate, LocalDateTime customerLastUpdateTime, String customerLastUpdatedBy, String customerDivision, String customerCountry) {
         this.customerId = customerId;
         this.customerName = customerName;
@@ -45,107 +64,61 @@ public class Customers
         this.customerDivision = customerDivision;
         this.customerCountry = customerCountry;
     }
+
+    /**
+     * Get customer id
+     * @return customer id
+     */
     public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
+    /**
+     * get customer name
+     * @return customer name
+     */
     public String getCustomerName() {
         return customerName;
     }
 
+    /**
+     * set customer name
+     * @param customerName customer name
+     */
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
 
+    /**
+     * Get customer address.
+     * @return address
+     */
     public String getCustomerAddress() {
         return customerAddress;
     }
 
-    public void setCustomerAddress(String customerAddress) {
-        this.customerAddress = customerAddress;
-    }
-
+    /**
+     * Get postal code
+     * @return postal
+     */
     public String getCustomerPostalCode() {
         return customerPostalCode;
     }
 
-    public void setCustomerPostalCode(String customerPostalCode) {
-        this.customerPostalCode = customerPostalCode;
-    }
-
+    /**
+     * Get phone
+     * @return phone
+     */
     public String getCustomerPhone() {
         return customerPhone;
     }
 
-    public void setCustomerPhone(String customerPhone) {
-        this.customerPhone = customerPhone;
-    }
-
-    public LocalDate getCustomerCreateDate() {
-        return customerCreateDate;
-    }
-
-    public void setCustomerCreateDate(LocalDate customerCreateDate) {
-        this.customerCreateDate = customerCreateDate;
-    }
-
-    public LocalDateTime getCustomerCreateTime() {
-        return customerCreateTime;
-    }
-
-    public void setCustomerCreateTime(LocalDateTime customerCreateTime) {
-        this.customerCreateTime = customerCreateTime;
-    }
-
-    public String getCustomerCreatedBy() {
-        return customerCreatedBy;
-    }
-
-    public void setCustomerCreatedBy(String customerCreatedBy) {
-        this.customerCreatedBy = customerCreatedBy;
-    }
-
-    public LocalDate getCustomerLastUpdateDate() {
-        return customerLastUpdateDate;
-    }
-
-    public void setCustomerLastUpdateDate(LocalDate customerLastUpdateDate) {
-        this.customerLastUpdateDate = customerLastUpdateDate;
-    }
-
-    public LocalDateTime getCustomerLastUpdateTime() {
-        return customerLastUpdateTime;
-    }
-
-    public void setCustomerLastUpdateTime(LocalDateTime customerLastUpdateTime) {
-        this.customerLastUpdateTime = customerLastUpdateTime;
-    }
-
-    public String getCustomerLastUpdatedBy() {
-        return customerLastUpdatedBy;
-    }
-
-    public void setCustomerLastUpdatedBy(String customerLastUpdatedBy) {
-        this.customerLastUpdatedBy = customerLastUpdatedBy;
-    }
-
+    /**
+     * Get division
+     * @return customer division
+     */
     public String getCustomerDivision() {
         return customerDivision;
     }
 
-    public void setCustomerDivision(String customerDivision) {
-        this.customerDivision = customerDivision;
-    }
-
-    public String getCustomerCountry() {
-        return customerCountry;
-    }
-
-    public void setCustomerCountry(String customerCountry) {
-        this.customerCountry = customerCountry;
-    }
 }

@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Contacts class.
+ */
 public class Contacts
 {
 
@@ -7,38 +10,34 @@ public class Contacts
     private String contactName;
     private String email;
 
+    /**
+     * Constructor
+     * @param contactId contactID
+     * @param contactName contactName
+     * @param email email
+     */
     public Contacts(int contactId, String contactName, String email) {
         this.contactId = contactId;
         this.contactName = contactName;
         this.email = email;
     }
 
+    /**
+     * Constructor.
+     * @param contactName contactName.
+     */
     public Contacts(String contactName)
     {
         this.contactName = contactName;
     }
 
-    public int getContactId() {
-        return contactId;
-    }
 
-    public void setContactId(int contactId) {
-        this.contactId = contactId;
-    }
-
+    /**
+     * Get contact name.
+     * @return name
+     */
     public String getContactName() {
         return contactName;
     }
 
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

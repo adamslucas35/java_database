@@ -25,6 +25,9 @@ import java.util.ResourceBundle;
 
 import static connector.JDBC.connection;
 
+/**
+ * Form to modify appointment.
+ */
 public class ModifyCustomerController implements Initializable {
 
     @FXML private ComboBox<String> mc_countryCombo;
@@ -38,6 +41,11 @@ public class ModifyCustomerController implements Initializable {
 
     ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
 
+    /**
+     * Initializes modifyCustomer
+     * @param url url
+     * @param resourceBundle ResourceBundle Lang
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -47,6 +55,12 @@ public class ModifyCustomerController implements Initializable {
     }
 
 
+    /**
+     * Receives Customer object from selected customer in customer.fxml.
+     * @param customers customer object
+     * @param countries country object
+     * @throws SQLException SQL query error
+     */
     public void receiveCustomer(Customers customers, Countries countries) throws SQLException
     {
         Countries country = countries;
@@ -59,6 +73,10 @@ public class ModifyCustomerController implements Initializable {
         mc_divisionCombo.setValue(customers.getCustomerDivision());
     }
 
+    /**
+     * Populates combo box with data from database.
+     * @param mouseEvent when combo box is clicked.
+     */
     public void  onCountryComboOpened(MouseEvent mouseEvent) {
         try {
             PreparedStatement loadCountries = connection.prepareStatement("SELECT Country FROM countries");
@@ -73,6 +91,10 @@ public class ModifyCustomerController implements Initializable {
         }
     }
 
+    /**
+     * Populates combo box data depending on which country was selected
+     * @param mouseEvent when button is clicked.
+     */
     public void onDivisionComboOpened(MouseEvent mouseEvent)
     {
         if(mc_countryCombo.getValue() == null)

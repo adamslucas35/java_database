@@ -1,9 +1,16 @@
 package model;
 
+/**
+ * Countries class.
+ */
 public class Countries {
     private int countryId;
     private String country;
 
+    /**
+     * Constructor.
+     * @param country country
+     */
     public Countries(String country)
     {
         this.country = country;
@@ -14,19 +21,18 @@ public class Countries {
         this.country = country;
     }
 
-
-    public int getCountryId() {
-        return countryId;
-    }
-
-    public void setCountryId(int countryId) {
-        this.countryId = countryId;
-    }
-
+    /**
+     * Get country
+     * @return country
+     */
     public String getCountry() {
         return country;
     }
 
+    /**
+     * Set country.
+     * @param country country
+     */
     public void setCountry(String country) {
         this.country = country;
     }

@@ -26,6 +26,9 @@ import java.util.ResourceBundle;
 
 import static connector.JDBC.connection;
 
+/**
+ * Window to view reports.
+ */
 public class ReportsController implements Initializable {
 
     private TableView<ObservableList<String>> avgTimeTableView;
@@ -41,7 +44,11 @@ public class ReportsController implements Initializable {
     private Pane r_timeTableView;
     private TableView<ObservableList<String>> timeTableView;
 
-
+    /**
+     * Initializes reports.fxml and creates tables
+     * @param url url
+     * @param resourceBundle resourceBundles
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         PreparedStatement getData = null;
@@ -56,16 +63,14 @@ public class ReportsController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        String customerQuery = "SELECT MONTHNAME(a.Start) as `%s`, a.Type as `%s`, c.Customer_Name as `%s`, COUNT(*) as `%s` " +
+        String customerQuery = "SELECT MONTHNAME(a.Start) as `%s`, a.Type as `%s`, COUNT(*) as `%s` " +
                 "FROM appointments a " +
                 "INNER JOIN customers c ON c.Customer_ID = a.Customer_ID " +
-                "GROUP BY a.Type, c.Customer_Name, MONTHNAME(a.Start)";
+                "GROUP BY a.Type, MONTHNAME(a.Start)";
         String month = rb.getString("month");
         String type = rb.getString("appointmentType");
-        String custName = rb.getString("customerName");
         String count = rb.getString("count");
-        String formatCustomerQuery = String.format(customerQuery, month, type, custName, count);
-        System.out.println(formatCustomerQuery);
+        String formatCustomerQuery = String.format(customerQuery, month, type, count);
 
         try {
             loadCustomerData(formatCustomerQuery);
@@ -95,6 +100,11 @@ public class ReportsController implements Initializable {
 
     }
 
+    /**
+     * function creates layout for contactTable
+     * @param rs ResourceBundle Lang
+     * @throws SQLException throws error in case of bad SQL query
+     */
     public void createContactTable(ResultSet rs) throws SQLException {
         contactTableView = new TableView<>();
 
@@ -132,7 +142,11 @@ public class ReportsController implements Initializable {
         contactTableView.setPrefHeight(120);
     }
 
-
+    /**
+     * Load data from query to table
+     * @param query SQL query
+     * @throws SQLException throws error in case of bad SQL query
+     */
     public void loadContactInfo(String query)
     {
         try {
@@ -166,7 +180,11 @@ public class ReportsController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * function creates layout for customerTable
+     * @param rs ResourceBundle Lang
+     * @throws SQLException throws error in case of bad SQL query
+     */
     public void generateCustomerTable(ResultSet rs) throws SQLException {
         customerTableView = new TableView<>();
         for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++)
@@ -182,6 +200,11 @@ public class ReportsController implements Initializable {
         }
     }
 
+    /**
+     * Load data from query to table
+     * @param query SQL query
+     * @throws SQLException throws error in case of bad SQL query
+     */
     public void loadCustomerData(String query) throws SQLException {
         PreparedStatement ps = connection.prepareStatement(query);
         ResultSet rs = ps.executeQuery();
@@ -192,7 +215,6 @@ public class ReportsController implements Initializable {
             for(int i = 1; i <= rs.getMetaData().getColumnCount(); i++)
             {
                 rowData.add(rs.getString(i));
-                System.out.println(rs.getString(i));
             }
             customerTableView.getItems().add(rowData);
 
@@ -201,10 +223,20 @@ public class ReportsController implements Initializable {
     }
 
 
+    /**
+     * Return to load.fxml
+     * @param actionEvent when button is clicked
+     * @throws IOException throws input output error
+     */
     public void return_to_load(ActionEvent actionEvent) throws IOException {
         MainApplication.return_to_load(actionEvent);
     }
 
+    /**
+     * When combo box is pressed show table
+     * @param actionEvent when combo box is clicked
+     * @throws SQLException throws error in case of bad SQL query
+     */
     public void r_contactComboReleased(ActionEvent actionEvent) throws SQLException {
         String contactID = null;
         PreparedStatement contactId = connection.prepareStatement("SELECT Contact_ID from contacts WHERE Contact_Name = ?");
@@ -217,7 +249,12 @@ public class ReportsController implements Initializable {
         String query = "SELECT Appointment_ID, Title, Type, Description, Start, End, Customer_ID FROM appointments WHERE Contact_ID = " + contactID;
         loadContactInfo(query);
     }
-    
+
+    /**
+     * function creates layout for timeTables
+     * @param rs ResourceBundle Lang
+     * @throws SQLException throws error in case of bad SQL query
+     */
     public void generateTimeTable(ResultSet rs, ResultSet rs2) throws SQLException {
         timeTableView = new TableView<>();
         for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
@@ -245,6 +282,12 @@ public class ReportsController implements Initializable {
     }
 
 
+    /**
+     * Load data from query to table.
+     * @param query1 SQL query
+     * @param query2 SQL query
+     * @throws SQLException throws error in case of bad SQL query
+     */
     public void timeTable(String query1, String query2) throws SQLException {
 
         PreparedStatement ps = connection.prepareStatement(query1);

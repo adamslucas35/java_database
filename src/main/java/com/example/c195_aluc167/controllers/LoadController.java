@@ -3,13 +3,8 @@ package com.example.c195_aluc167.controllers;
 import com.example.c195_aluc167.MainApplication;
 import connector.JDBC;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
-import javafx.util.converter.LocalDateTimeStringConverter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,14 +12,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 
-public class SampleController implements Initializable {
+/**
+ * Window to load appointments, customers and reports page.
+ */
+public class LoadController implements Initializable {
 
     public void logOut_clicked(ActionEvent actionEvent) throws IOException
     {
@@ -39,16 +35,31 @@ public class SampleController implements Initializable {
 //        stage.show();
     }
 
+    /**
+     * initializes load.fxml
+     * @param url url
+     * @param resourceBundle resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        System.out.println("Sample page has been initialized!");
+        System.out.println("Load page has been initialized!");
     }
 
+    /**
+     * Opens customers.fxml
+     * @param actionEvent when button is clicked.
+     * @throws IOException throws Input Output error
+     */
     public void ld_customer_clicked(ActionEvent actionEvent) throws IOException {
         MainApplication.loadScene("customers.fxml", 1050, 500, "", actionEvent);
     }
 
+    /**
+     * Opens appointments.fxml
+     * @param actionEvent when button is clicked.
+     * @throws IOException throws Input Output error
+     */
     public void ld_appointment_clicked(ActionEvent actionEvent) throws IOException {
         ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
         String rightNow = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(JDBC.convertLocaltoUTC(LocalDateTime.now()));
@@ -85,10 +96,20 @@ public class SampleController implements Initializable {
 
     }
 
+    /**
+     * Goes back to loginMain.fxml
+     * @param actionEvent when button is clicked.
+     * @throws IOException throws Input Output error
+     */
     public void log_out(ActionEvent actionEvent) throws IOException {
         MainApplication.loadScene("loginMain.fxml", 440, 440, "", actionEvent);
     }
 
+    /**
+     * Opens reports.fxml
+     * @param actionEvent when button is clicked.
+     * @throws IOException throws Input Output error
+     */
     public void clickedReports(ActionEvent actionEvent) throws IOException {
         MainApplication.loadScene("reports.fxml", 850, 560, "", actionEvent);
     }

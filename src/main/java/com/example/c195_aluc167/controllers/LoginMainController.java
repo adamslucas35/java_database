@@ -23,6 +23,9 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
+/**
+ * Login window.
+ */
 public class LoginMainController implements Initializable {
 
     @FXML private Button lm_login_btn;
@@ -54,6 +57,12 @@ public class LoginMainController implements Initializable {
 
     }
 
+    /**
+     * When submit button is pushed, function verifies that username and password match and are correct.
+     * @param actionEvent when button is clicked.
+     * @throws IOException throws error if input or output are bad
+     * @throws SQLException throws error if sql query is bad.
+     */
     public void lm_login_btn_clicked(ActionEvent actionEvent) throws IOException, SQLException {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("Lang", Locale.getDefault());
         if (lm_username_tf.getText().isEmpty() || lm_password_pf.getText().isEmpty()) {
@@ -81,7 +90,7 @@ public class LoginMainController implements Initializable {
                     String grabPassword = resultSet.getString("Password");
                     if (grabPassword.equals(lm_password_pf.getText())) {
                         writeToFile(true);
-                        MainApplication.loadScene("sample.fxml", 370, 261, "", actionEvent);
+                        MainApplication.loadScene("load.fxml", 370, 261, "", actionEvent);
                     } else {
                         writeToFile(false);
                         String errorPassword = resourceBundle.getString("errorPassword");
@@ -95,6 +104,11 @@ public class LoginMainController implements Initializable {
         }
     }
 
+    /**
+     * Function writes to login_activity.txt whether true or false is passed.
+     * @param passFail true or false
+     * @throws IOException throws exception is input or output error is found.
+     */
     public void writeToFile(boolean passFail) throws IOException
     {
         File myFile = new File("login_activity.txt");

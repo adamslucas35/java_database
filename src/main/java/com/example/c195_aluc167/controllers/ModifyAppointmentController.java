@@ -27,6 +27,9 @@ import java.time.format.DateTimeParseException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * Form to modify appointment.
+ */
 public class ModifyAppointmentController implements Initializable {
 
     public TextField ma_appointmentID_tf;
@@ -44,6 +47,12 @@ public class ModifyAppointmentController implements Initializable {
 
 
     ResourceBundle rb = ResourceBundle.getBundle("Lang", Locale.getDefault());
+
+    /**
+     * Initializes modifyApointment.
+     * @param url url
+     * @param resourceBundle resourebundle Lang
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -51,6 +60,11 @@ public class ModifyAppointmentController implements Initializable {
         ma_appointmentID_tf.setDisable(true);
     }
 
+    /**
+     * Receives data from selected appointment in appointments.fxml
+     * @param appointments appointments object
+     * @param contacts contacts object
+     */
     public void receiveAppointment(Appointments appointments, Contacts contacts)
     {
         ma_appointmentID_tf.setText(Integer.toString(appointments.getAppointmentId()));
@@ -68,6 +82,11 @@ public class ModifyAppointmentController implements Initializable {
 
     }
 
+    /**
+     * Fills combo box with data for Contact Names
+     * @param mouseEvent when box is clicked.
+     * @throws SQLException sql query error
+     */
     public void appointmentContactClicked(MouseEvent mouseEvent) throws SQLException
     {
         PreparedStatement getData = JDBC.connection.prepareStatement("SELECT Contact_Name FROM contacts");
@@ -79,6 +98,12 @@ public class ModifyAppointmentController implements Initializable {
         }
     }
 
+    /**
+     * Modifies database with all the field's data.
+     * @param actionEvent when button is pressed
+     * @throws IOException input output error
+     * @throws SQLException sql query error
+     */
     public void onSubmit(ActionEvent actionEvent) throws IOException, SQLException {
         String appointmentStartDate = "";
         String appointmentEndDate = "";
@@ -234,12 +259,25 @@ public class ModifyAppointmentController implements Initializable {
         MainApplication.loadScene("appointments.fxml", 1200, 500, "", actionEvent);
     }
 
+    /**
+     * Returns to appointments.fxml.
+     * @param actionEvent when button is pressed.
+     * @throws IOException input output error
+     */
     public void goBack(ActionEvent actionEvent) throws IOException
     {
         MainApplication.loadScene("appointments.fxml", 1200, 500, "", actionEvent);
 
     }
 
+    /**
+     * Check to see if appointment starts before it ends.
+     * @param appointmentStart appointmentStart dateTime
+     * @param appointmentEnd appointmentEnd dateTiem
+     * @param rb ResourceBundle Lang
+     * @return to end function
+     * @throws SQLException throws error if sql query is not correct
+     */
     static boolean checkAppOverlap(String appointmentStart, String appointmentEnd, TextField maAppointmentIDTf, ResourceBundle rb) throws SQLException {
         PreparedStatement overlap = JDBC.connection.prepareStatement("SELECT * FROM appointments " +
                 "WHERE ((? < End AND ? > Start) OR (? <= Start AND ? >= End) OR (? >= Start AND ? <= End)) " +
@@ -262,4 +300,7 @@ public class ModifyAppointmentController implements Initializable {
         }
         return false;
     }
+
+
 }
+

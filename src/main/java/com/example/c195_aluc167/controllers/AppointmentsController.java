@@ -33,6 +33,10 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * This class controls the appointments.fxml file.
+ * It generates a table with appointment information and allows the user to sort the view.
+ */
 public class AppointmentsController implements Initializable {
 
 
@@ -60,17 +64,24 @@ public class AppointmentsController implements Initializable {
     private ObservableList<Object> appointmentData;
 
 
-
-
+    /**
+     * This initialize generates the table and loads it with data using the loadAppointmentTable function.
+     * @param url the url
+     * @param resourceBundle Initializes the default language and location
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         loadAppointmentTable(queryLoadAppointments);
         //check for appointment within 15 minutes
 
-
-
     }
+
+    /**
+     * This function generates the table based off of the Result Set from the Param.
+     * @param rs this rs pulls the information from the ResultSet issued from loadAppointmentData
+     * @throws SQLException throws exception if SQL is not used correctly
+     */
 
     public void createAppointmentTable(ResultSet rs) throws SQLException
     {
@@ -97,8 +108,8 @@ public class AppointmentsController implements Initializable {
         TableColumn<ObservableList<String>, ?> titleColumn = appointmentTableView.getColumns().get(1);
         TableColumn<ObservableList<String>, ?> descriptionColumn = appointmentTableView.getColumns().get(2);
         TableColumn<ObservableList<String>, ?> locationColumn = appointmentTableView.getColumns().get(3);
-        TableColumn<ObservableList<String>, ?> typeColumn = appointmentTableView.getColumns().get(4);
-        TableColumn<ObservableList<String>, ?> contactNameColumn = appointmentTableView.getColumns().get(5);
+        TableColumn<ObservableList<String>, ?> contactNameColumn = appointmentTableView.getColumns().get(4);
+        TableColumn<ObservableList<String>, ?> typeColumn = appointmentTableView.getColumns().get(5);
         TableColumn<ObservableList<String>, ?> startColumn = appointmentTableView.getColumns().get(6);
         TableColumn<ObservableList<String>, ?> endColumn = appointmentTableView.getColumns().get(7);
         TableColumn<ObservableList<String>, ?> customerIDColumn = appointmentTableView.getColumns().get(8);
@@ -108,8 +119,8 @@ public class AppointmentsController implements Initializable {
         String title = rb.getString("appointmentTitle");
         String description = rb.getString("appointmentDescription");
         String location = rb.getString("appointmentLocation");
-        String type = rb.getString("appointmentType");
         String contactName = rb.getString("appointmentContact");
+        String type = rb.getString("appointmentType");
         String start = rb.getString("appointmentStart");
         String end = rb.getString("appointmentEnd");
         String customerId = rb.getString("appointmentCustomerID");
@@ -119,8 +130,8 @@ public class AppointmentsController implements Initializable {
         titleColumn.setText(title);
         descriptionColumn.setText(description);
         locationColumn.setText(location);
-        typeColumn.setText(type);
         contactNameColumn.setText(contactName);
+        typeColumn.setText(type);
         startColumn.setText(start);
         endColumn.setText(end);
         customerIDColumn.setText(customerId);
@@ -134,6 +145,10 @@ public class AppointmentsController implements Initializable {
 
     }
 
+    /**
+     * This function runs the SQL statement to pull all appointment data from the database.
+     * @param query this query is the SQL statement.
+     */
     public void loadAppointmentTable(String query)
     {
          appointmentData = FXCollections.observableArrayList();
@@ -176,11 +191,20 @@ public class AppointmentsController implements Initializable {
 
     }
 
+    /**
+     * Functions opens up createAppointment.fxml when button is clicked.
+     * @param actionEvent when button is clicked.
+     * @throws IOException throws exception is JAVAFX does not work.
+     */
     public void ap_createAppointmentClicked(ActionEvent actionEvent) throws IOException
     {
         MainApplication.loadScene("createAppointment.fxml", 650, 400, "", actionEvent);
     }
-
+    /**
+     * Functions opens up modifyAppointment.fxml when button is clicked.
+     * @param actionEvent when button is clicked.
+     * @throws IOException throws exception is JAVAFX does not work.
+     */
     public void ap_modifyAppointmentClicked(ActionEvent actionEvent) throws IOException
     {
         ObservableList<String> selectedAppointment = appointmentTableView.getSelectionModel().getSelectedItem();
@@ -234,7 +258,11 @@ public class AppointmentsController implements Initializable {
 
 
     }
-
+    /**
+     * Functions opens up removeAppointment.fxml when button is clicked.
+     * @param actionEvent when button is clicked.
+     * @throws IOException throws exception is JAVAFX does not work.
+     */
     public void ap_removeAppointmentClicked(ActionEvent actionEvent) throws SQLException
     {
         ObservableList<String> selectedAppointment = appointmentTableView.getSelectionModel().getSelectedItem();
@@ -268,12 +296,21 @@ public class AppointmentsController implements Initializable {
 
         }
     }
-    
+
+    /**
+     * Functions return to load.fxml when button is clicked.
+     * @param actionEvent when button is clicked.
+     * @throws IOException throws exception is JAVAFX does not work.
+     */
     public void return_to_load(ActionEvent actionEvent) throws IOException
     {
         MainApplication.return_to_load(actionEvent);
     }
 
+    /**
+     * When radio button is clicked, function sorts table by appointment in current month.
+     * @param actionEvent when button is clicked.
+     */
     public void radioMonthClicked(ActionEvent actionEvent)
     {
         LocalDate today = LocalDate.now();
@@ -294,7 +331,10 @@ public class AppointmentsController implements Initializable {
 
 
     }
-
+    /**
+     * When radio button is clicked, function sorts table by appointment in current week.
+     * @param actionEvent when button is clicked.
+     */
     public void radioWeekClicked(ActionEvent actionEvent)
     {
         LocalDate today = LocalDate.now();
@@ -314,6 +354,10 @@ public class AppointmentsController implements Initializable {
         }
     }
 
+    /**
+     * When radio button is clicked, function sorts table by all appointments.
+     * @param actionEvent when button is clicked.
+     */
     public void radioAllClicked(ActionEvent actionEvent)
     {
         loadAppointmentTable(queryLoadAppointments);
